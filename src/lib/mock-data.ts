@@ -22,17 +22,6 @@ export interface Competition {
   instantWinsPaidOut?: number;
 }
 
-export interface Winner {
-  id: string;
-  name: string;
-  location: string;
-  prize: string;
-  prizeValue: number;
-  imageUrl: string;
-  competitionTitle: string;
-  wonDate: string;
-}
-
 export const competitions: Competition[] = [
   {
     id: '1',
@@ -213,69 +202,6 @@ export const competitions: Competition[] = [
     featured: false,
     maxPerPerson: 50,
     minimumSoldPercentage: 75,
-  },
-];
-
-export const winners: Winner[] = [
-  {
-    id: '1',
-    name: 'Jamie M.',
-    location: 'Glasgow',
-    prize: 'Audi RS6 Avant',
-    prizeValue: 8500000,
-    imageUrl: '/images/winner-1.jpg',
-    competitionTitle: 'Audi RS6 Avant or £85,000 Cash',
-    wonDate: '2026-05-15',
-  },
-  {
-    id: '2',
-    name: 'Sarah K.',
-    location: 'London',
-    prize: '£50,000 Cash',
-    prizeValue: 5000000,
-    imageUrl: '/images/winner-2.jpg',
-    competitionTitle: '£50,000 Cash Prize',
-    wonDate: '2026-05-01',
-  },
-  {
-    id: '3',
-    name: 'Craig D.',
-    location: 'Manchester',
-    prize: 'Rolex Daytona',
-    prizeValue: 2800000,
-    imageUrl: '/images/winner-3.jpg',
-    competitionTitle: 'Rolex Daytona or £28,000 Cash',
-    wonDate: '2026-04-20',
-  },
-  {
-    id: '4',
-    name: 'Emma R.',
-    location: 'Birmingham',
-    prize: 'Holiday to Barbados',
-    prizeValue: 800000,
-    imageUrl: '/images/winner-4.jpg',
-    competitionTitle: 'Luxury Barbados Holiday for Two',
-    wonDate: '2026-04-10',
-  },
-  {
-    id: '5',
-    name: 'Mark T.',
-    location: 'Leeds',
-    prize: 'PS5 Pro Gaming Bundle',
-    prizeValue: 350000,
-    imageUrl: '/images/winner-5.jpg',
-    competitionTitle: 'Ultimate Gaming Setup',
-    wonDate: '2026-03-28',
-  },
-  {
-    id: '6',
-    name: 'Laura B.',
-    location: 'Edinburgh',
-    prize: '£10,000 Cash',
-    prizeValue: 1000000,
-    imageUrl: '/images/winner-6.jpg',
-    competitionTitle: '£10,000 Cash Quickie',
-    wonDate: '2026-03-15',
   },
 ];
 

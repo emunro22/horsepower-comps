@@ -8,7 +8,6 @@ import { useAuth } from '@/lib/auth-context';
 import { CompetitionsDesktopMenu, CompetitionsMobileMenu } from './CompetitionsNavMenu';
 
 const navLinks = [
-  { href: '/winners', label: 'Winners' },
   { href: '/how-it-works', label: 'How It Works' },
   { href: '/faq', label: 'FAQ' },
   { href: '/contact', label: 'Contact' },

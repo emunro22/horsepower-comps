@@ -2,7 +2,6 @@ import HeroSection from '@/components/HeroSection';
 import CompetitionsCarousel from '@/components/CompetitionsCarousel';
 import CompetitionGrid from '@/components/CompetitionGrid';
 import HowItWorksSection from '@/components/HowItWorksSection';
-import WinnersSection from '@/components/WinnersSection';
 import InstantWinsSection from '@/components/InstantWinsSection';
 import WheelGamesSection from '@/components/WheelGamesSection';
 import FadeIn from '@/components/FadeIn';
@@ -119,7 +118,6 @@ export default function HomePage() {
       </section>
 
       <HowItWorksSection />
-      <WinnersSection />
 
       {/* Threshold Info Banner */}
       <section className="py-12 bg-card border-t border-border">

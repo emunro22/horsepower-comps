@@ -35,7 +35,6 @@ const footerLinks = {
   ],
   Company: [
     { href: '/how-it-works', label: 'How It Works' },
-    { href: '/winners', label: 'Winners' },
     { href: '/faq', label: 'FAQ' },
     { href: '/contact', label: 'Contact Us' },
   ],
