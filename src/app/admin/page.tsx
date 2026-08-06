@@ -78,7 +78,7 @@ export default function AdminDashboard() {
     <div className="max-w-7xl mx-auto">
       <div className="animate-fade-in-up mb-8">
         <h1 className="text-2xl sm:text-3xl font-black text-foreground mb-1">Dashboard</h1>
-        <p className="text-muted font-medium">Welcome back. Here&apos;s what&apos;s happening with Clutch Competitions.</p>
+        <p className="text-muted font-medium">Welcome back. Here&apos;s what&apos;s happening with Horsepowercomps.</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">

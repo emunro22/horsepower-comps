@@ -1,29 +1,6 @@
 import Link from 'next/link';
-import Image from 'next/image';
-
-// TODO: replace href "#" with the real profile URLs once available.
-const socialLinks = [
-  {
-    label: 'Facebook',
-    href: '#',
-    path: 'M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.847v1.202h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z',
-  },
-  {
-    label: 'Instagram',
-    href: '#',
-    path: 'M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z',
-  },
-  {
-    label: 'TikTok',
-    href: '#',
-    path: 'M16.6 5.82c-.7-.76-1.13-1.75-1.21-2.82h-3.02v14.28c0 1.5-1.22 2.72-2.72 2.72a2.72 2.72 0 0 1 0-5.44c.28 0 .55.04.8.12V11.5a5.8 5.8 0 0 0-.8-.06c-3.2 0-5.8 2.6-5.8 5.8s2.6 5.8 5.8 5.8 5.8-2.6 5.8-5.8V9.4a8.9 8.9 0 0 0 5.14 1.64V8.02a5.83 5.83 0 0 1-3.99-2.2z',
-  },
-  {
-    label: 'YouTube',
-    href: '#',
-    path: 'M23.499 6.203a3.007 3.007 0 0 0-2.113-2.129C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.386.529A3.007 3.007 0 0 0 .501 6.203C0 8.093 0 12 0 12s0 3.907.501 5.797a3.007 3.007 0 0 0 2.113 2.129c1.881.529 9.386.529 9.386.529s7.505 0 9.386-.529a3.007 3.007 0 0 0 2.113-2.129C24 15.907 24 12 24 12s0-3.907-.501-5.797ZM9.545 15.568V8.432L15.818 12l-6.273 3.568Z',
-  },
-];
+import Logo from './Logo';
+import { socialLinks } from '@/lib/social';
 
 const footerLinks = {
   Competitions: [
@@ -97,9 +74,9 @@ export default function Footer() {
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="flex items-center gap-2.5 mb-4">
-              <Image src="/logo.png" alt="Clutch Competitions" width={72} height={72} className="w-18 h-18 object-contain shrink-0" />
-              <span className="text-xl font-extrabold text-foreground">
-                Clutch <span className="text-primary">Competitions</span>
+              <Logo size="lg" />
+              <span className="text-xl font-extrabold text-foreground uppercase">
+                Horsepower<span className="text-primary">Comps</span>
               </span>
             </Link>
             <p className="text-sm text-muted max-w-xs mb-6">
@@ -152,7 +129,7 @@ export default function Footer() {
               <span>Free postal entry available</span>
             </div>
             <p className="text-xs text-muted">
-              &copy; {new Date().getFullYear()} Clutch Competitions Ltd. All rights reserved. Registered in the UK.
+              &copy; {new Date().getFullYear()} Horsepowercomps Ltd. All rights reserved. Registered in the UK.
             </p>
           </div>
         </div>

@@ -5,8 +5,8 @@ const sections: { title: string; body: React.ReactNode }[] = [
     title: '1. About Us',
     body: (
       <p>
-        Clutch Competitions (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;) is a UK-registered
-        company operating prize competitions at clutchcompetitions.co.uk (the
+        Horsepowercomps (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;) is a UK-registered
+        company operating prize competitions at horsepowercomps.co.uk (the
         &quot;Site&quot;). These Terms &amp; Conditions govern every competition run on the Site.
         By purchasing an entry, or by submitting a free postal entry, you agree to be bound by
         these terms.
@@ -17,7 +17,7 @@ const sections: { title: string; body: React.ReactNode }[] = [
     title: '2. Eligibility',
     body: (
       <p>
-        Entrants must be aged 18 or over and resident in the United Kingdom. Employees of Clutch
+        Entrants must be aged 18 or over and resident in the United Kingdom. Employees of Horsepowercomps
         Competitions, their immediate families, and anyone professionally connected to the
         running of a competition are not eligible to enter that competition. We reserve the right
         to request proof of age and identity before releasing any prize.

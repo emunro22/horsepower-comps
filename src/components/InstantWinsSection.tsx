@@ -38,9 +38,9 @@ export default async function InstantWinsSection() {
   if (count === 0) return null;
 
   return (
-    <section className="py-16 lg:py-24 bg-surface border-y border-border">
+    <section className="py-8 lg:py-12 bg-surface border-y border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
+        <div className="text-center mb-6">
           <div className="inline-flex items-center gap-2 bg-card border border-primary/20 rounded-full px-4 py-1.5 mb-4">
             <span className="text-primary font-bold text-sm">⚡ Quick Wins</span>
           </div>
@@ -56,7 +56,7 @@ export default async function InstantWinsSection() {
         </div>
 
         {prizes.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto mb-10">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto mb-6">
             {prizes.map((p, i) => (
               <Link
                 key={`${p.competitionSlug}-${i}`}

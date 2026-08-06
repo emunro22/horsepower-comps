@@ -5,8 +5,8 @@ const sections: { title: string; body: React.ReactNode }[] = [
     title: '1. Who We Are',
     body: (
       <p>
-        Clutch Competitions is the data controller for the personal information you provide when
-        you use clutchcompetitions.co.uk (the &quot;Site&quot;). This policy explains what data we
+        Horsepowercomps is the data controller for the personal information you provide when
+        you use horsepowercomps.co.uk (the &quot;Site&quot;). This policy explains what data we
         collect, why, and how we look after it, in line with UK GDPR and the Data Protection Act
         2018.
       </p>

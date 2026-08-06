@@ -45,7 +45,7 @@ const steps = [
 
 export default function HowItWorksSection() {
   return (
-    <section className="py-20 lg:py-28">
+    <section className="py-8 lg:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeIn className="text-center mb-14">
           <h2 className="text-3xl sm:text-4xl font-black text-foreground mb-4">

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import Logo from './Logo';
 import { usePathname } from 'next/navigation';
 
 const adminLinks = [
@@ -60,6 +60,15 @@ const adminLinks = [
       </svg>
     ),
   },
+  {
+    href: '/admin/marketing',
+    label: 'Marketing',
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+    ),
+  },
 ];
 
 function SidebarLinks({ onNavigate }: { onNavigate?: () => void }) {
@@ -105,7 +114,7 @@ export default function AdminSidebar() {
       {/* Mobile top bar */}
       <header className="lg:hidden sticky top-0 z-40 bg-surface border-b border-border px-4 py-3 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
-          <Image src="/logo.png" alt="Clutch Competitions" width={36} height={36} className="w-9 h-9 object-contain shrink-0" />
+          <Logo size="sm" />
           <span className="text-lg font-extrabold text-foreground">Admin</span>
         </Link>
         <button
@@ -127,9 +136,9 @@ export default function AdminSidebar() {
           <aside className="absolute inset-y-0 left-0 w-72 max-w-[85vw] bg-surface border-r border-border p-4 flex flex-col animate-fade-in-up">
             <div className="flex items-center justify-between mb-8 px-1">
               <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
-                <Image src="/logo.png" alt="Clutch Competitions" width={40} height={40} className="w-10 h-10 object-contain shrink-0" />
-                <span className="text-lg font-extrabold text-foreground">
-                  Clutch <span className="text-primary">Competitions</span>
+                <Logo size="sm" />
+                <span className="text-lg font-extrabold text-foreground uppercase">
+                  Horsepower<span className="text-primary">Comps</span>
                 </span>
               </Link>
               <button
@@ -166,9 +175,9 @@ export default function AdminSidebar() {
       <aside className="w-64 bg-surface border-r border-border min-h-screen p-4 hidden lg:flex lg:flex-col">
         <div className="mb-8 px-3">
           <Link href="/" className="flex items-center gap-2 mb-1">
-            <Image src="/logo.png" alt="Clutch Competitions" width={44} height={44} className="w-11 h-11 object-contain shrink-0" />
-            <span className="text-lg font-extrabold text-foreground">
-              Clutch <span className="text-primary">Competitions</span>
+            <Logo size="sm" />
+            <span className="text-lg font-extrabold text-foreground uppercase">
+              Horsepower<span className="text-primary">Comps</span>
             </span>
           </Link>
           <p className="text-xs text-muted ml-10 font-semibold">Admin Portal</p>

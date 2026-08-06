@@ -71,6 +71,13 @@
       "when": 1783892797018,
       "tag": "0009_eager_bishop",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1786042274858,
+      "tag": "0010_tough_lord_hawal",
+      "breakpoints": true
     }
   ]
 }

@@ -12,7 +12,7 @@ const steps = [
 
 const trustPoints = [
   { title: 'Provably Fair', description: 'Every draw uses a cryptographically secure random number generator. Results are published with verification hashes so anyone can independently verify fairness.', icon: '🎲' },
-  { title: 'Registered Company', description: 'Clutch Competitions Ltd is a registered UK company operating fully within UK competition law. We take compliance seriously so you can enter with confidence.', icon: '📋' },
+  { title: 'Registered Company', description: 'Horsepowercomps Ltd is a registered UK company operating fully within UK competition law. We take compliance seriously so you can enter with confidence.', icon: '📋' },
   { title: 'Real Winners', description: 'We publish all our winners with their permission. Check out our Winners page to see real people who\'ve won real prizes.', icon: '✅' },
   { title: 'Secure Payments', description: 'All payments are processed through Stripe, one of the world\'s most trusted payment processors. Your card details never touch our servers.', icon: '🔐' },
 ];
@@ -49,7 +49,7 @@ export default function HowItWorksPage() {
       </div>
 
       <FadeIn className="text-center mb-12">
-        <h2 className="text-3xl font-black text-foreground mb-4">Why Trust Clutch Competitions?</h2>
+        <h2 className="text-3xl font-black text-foreground mb-4">Why Trust Horsepowercomps?</h2>
         <p className="text-muted text-lg max-w-2xl mx-auto font-medium">
           We&apos;re committed to running the fairest, most transparent competitions in the UK.
         </p>

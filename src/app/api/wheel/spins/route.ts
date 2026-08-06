@@ -35,7 +35,7 @@ export async function POST(request: Request) {
       status: 'pending',
     });
 
-    const origin = request.headers.get('origin') || 'https://clutchcompetitions.co.uk';
+    const origin = request.headers.get('origin') || 'https://horsepowercomps.co.uk';
 
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',

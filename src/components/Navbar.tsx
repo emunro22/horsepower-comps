@@ -1,11 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { useState } from 'react';
 import { useStore } from '@/lib/store';
 import { useAuth } from '@/lib/auth-context';
 import { CompetitionsDesktopMenu, CompetitionsMobileMenu } from './CompetitionsNavMenu';
+import Logo from './Logo';
+import { socialLinks } from '@/lib/social';
+
+const navSocialLinks = socialLinks.filter((s) => s.href !== '#');
 
 const navLinks = [
   { href: '/how-it-works', label: 'How It Works' },
@@ -129,10 +132,10 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-3 xl:px-8">
         <div className="flex items-center justify-between h-20 lg:h-24">
           <Link href="/" className="flex items-center gap-2 lg:gap-3 shrink-0">
-            <Image src="/logo.png" alt="Clutch Competitions" width={64} height={64} className="w-12 h-12 lg:w-16 lg:h-16 object-contain shrink-0" />
+            <Logo size="md" />
             <div className="flex flex-col">
-              <span className="text-xl lg:text-2xl font-extrabold tracking-tight text-foreground whitespace-nowrap">
-                Clutch <span className="text-primary">Competitions</span>
+              <span className="text-xl lg:text-2xl font-extrabold tracking-tight text-foreground whitespace-nowrap uppercase">
+                Horsepower<span className="text-primary">Comps</span>
               </span>
               <span className="text-xs text-muted -mt-1 hidden xl:block tracking-widest uppercase font-medium whitespace-nowrap">
                 Premium Prize Competitions
@@ -154,6 +157,22 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-2">
+            <div className="hidden lg:flex items-center gap-1 pr-2 mr-1 border-r border-border">
+              {navSocialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 flex items-center justify-center rounded-lg text-muted hover:text-primary hover:bg-white/5 transition-colors"
+                  aria-label={social.label}
+                >
+                  <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor">
+                    <path d={social.path} />
+                  </svg>
+                </a>
+              ))}
+            </div>
             <CartButton />
             <UserMenu />
 
@@ -245,6 +264,22 @@ export default function Navbar() {
                 </Link>
               </div>
             )}
+            <div className="flex items-center justify-center gap-3 pt-4 mt-4 border-t border-border">
+              {navSocialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 flex items-center justify-center rounded-lg bg-card border border-border text-muted hover:text-primary transition-colors"
+                  aria-label={social.label}
+                >
+                  <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
+                    <path d={social.path} />
+                  </svg>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>

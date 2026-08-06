@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useCompetitions, useStore } from '@/lib/store';
 import { formatPrice, formatPriceShort, percentSold, getTimeRemaining } from '@/lib/utils';
+import CountdownTimer from './CountdownTimer';
 import type { Competition } from '@/lib/mock-data';
 
 function useCountdown(endDate: string) {
@@ -24,7 +25,7 @@ function CarouselSlide({
   priority,
 }: {
   competition: Competition;
-  slideRef: (el: HTMLAnchorElement | null) => void;
+  slideRef: (el: HTMLDivElement | null) => void;
   onNavigate: (e: MouseEvent) => void;
   priority?: boolean;
 }) {
@@ -33,12 +34,15 @@ function CarouselSlide({
   const isHot = percent >= 80;
 
   return (
-    <Link
+    <div
       ref={slideRef}
+      className="border-glow shrink-0 snap-center w-[72%] sm:w-[52%] lg:w-[40%] xl:w-[32%] rounded-2xl"
+    >
+    <Link
       href={`/competitions/${competition.slug}`}
       onClickCapture={onNavigate}
       draggable={false}
-      className="group relative shrink-0 snap-center w-[72%] sm:w-[52%] lg:w-[40%] xl:w-[32%] rounded-2xl overflow-hidden border border-border bg-card transition-transform duration-300 hover:-translate-y-1"
+      className="group relative block rounded-[14px] overflow-hidden bg-card transition-transform duration-300 hover:-translate-y-1"
     >
       <div className="relative aspect-[4/3]">
         <Image
@@ -83,11 +87,17 @@ function CarouselSlide({
           </p>
         )}
 
+        <div className="flex items-center justify-center gap-1.5 mt-2">
+          <div className="w-1.5 h-1.5 rounded-full bg-success pulse-live" />
+          <CountdownTimer endDate={competition.drawDate} compact />
+        </div>
+
         <div className="mt-4 w-full py-3 rounded-xl bg-primary group-hover:bg-primary-light text-background font-bold text-sm sm:text-base transition-colors">
           Enter Now
         </div>
       </div>
     </Link>
+    </div>
   );
 }
 
@@ -95,7 +105,7 @@ export default function CompetitionsCarousel() {
   const competitions = useCompetitions();
   const { competitionsLoading } = useStore();
   const scrollerRef = useRef<HTMLDivElement>(null);
-  const slideRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const isDraggingRef = useRef(false);
   const dragState = useRef({ startX: 0, scrollLeft: 0, moved: false, pointerId: 0 });

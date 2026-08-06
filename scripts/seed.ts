@@ -12,7 +12,7 @@ async function seed() {
 
   // Create admin user
   const adminId = uuid();
-  const adminHash = await bcrypt.hash('ClutchAdmin2026!', 12);
+  const adminHash = await bcrypt.hash('HorsepowerAdmin2026!', 12);
 
   await db.insert(schema.users).values({
     id: adminId,
@@ -22,7 +22,7 @@ async function seed() {
     role: 'admin',
     emailVerified: true,
   });
-  console.log('✓ Admin user created: decolow@icloud.com / ClutchAdmin2026!');
+  console.log('✓ Admin user created: decolow@icloud.com / HorsepowerAdmin2026!');
 
   // Seed categories
   const categorySeed = [

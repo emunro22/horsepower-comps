@@ -183,3 +183,18 @@ export const wheelSpins = pgTable('wheel_spins', {
   stripeSessionId: text('stripe_session_id'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
+
+// Singleton-per-row settings + last-run state for recurring marketing email
+// campaigns. The cron job reads lastSentAt and only sends once intervalDays
+// has elapsed, so a daily cron trigger naturally produces a rolling N-day
+// cadence without needing cron syntax that can express "every 30 days".
+export const marketingCampaigns = pgTable('marketing_campaigns', {
+  id: text('id').primaryKey(),
+  name: varchar('name', { length: 255 }).notNull(),
+  enabled: boolean('enabled').default(true).notNull(),
+  intervalDays: integer('interval_days').default(30).notNull(),
+  lastSentAt: timestamp('last_sent_at'),
+  lastRecipientCount: integer('last_recipient_count').default(0).notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+});

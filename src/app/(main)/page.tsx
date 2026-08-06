@@ -4,6 +4,7 @@ import CompetitionGrid from '@/components/CompetitionGrid';
 import HowItWorksSection from '@/components/HowItWorksSection';
 import InstantWinsSection from '@/components/InstantWinsSection';
 import WheelGamesSection from '@/components/WheelGamesSection';
+import TikTokFeed from '@/components/TikTokFeed';
 import FadeIn from '@/components/FadeIn';
 import Link from 'next/link';
 
@@ -18,9 +19,9 @@ export default function HomePage() {
       <CompetitionsCarousel />
 
       {/* Featured Competitions */}
-      <section className="py-16 lg:py-24">
+      <section className="py-8 lg:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeIn className="flex items-end justify-between mb-10">
+          <FadeIn className="flex items-end justify-between mb-6">
             <div>
               <h2 className="text-3xl sm:text-4xl font-black text-foreground mb-2">
                 Featured Competitions
@@ -44,11 +45,39 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Live Competitions Grid */}
+      <section className="py-8 lg:py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeIn className="text-center mb-6">
+            <h2 className="text-3xl sm:text-4xl font-black text-foreground mb-2">
+              Live Competitions
+            </h2>
+            <p className="text-muted text-lg font-medium">
+              Browse all our currently live competitions and find your next win.
+            </p>
+          </FadeIn>
+
+          <CompetitionGrid filter="live" limit={10} />
+
+          <div className="text-center mt-6">
+            <Link
+              href="/competitions"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary-light text-background font-bold rounded-xl transition-all hover:scale-105"
+            >
+              See All Competitions
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <InstantWinsSection />
       <WheelGamesSection />
 
       {/* Trust Bar */}
-      <section className="py-6 bg-surface border-y border-border">
+      <section className="py-5 bg-surface border-y border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
             {[
@@ -69,47 +98,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Live Competitions Grid */}
-      <section className="py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeIn className="text-center mb-10">
-            <h2 className="text-3xl sm:text-4xl font-black text-foreground mb-2">
-              Live Competitions
-            </h2>
-            <p className="text-muted text-lg font-medium">
-              Browse all our currently live competitions and find your next win.
-            </p>
-          </FadeIn>
-
-          <CompetitionGrid filter="live" limit={10} />
-
-          <div className="text-center mt-10">
-            <Link
-              href="/competitions"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary-light text-background font-bold rounded-xl transition-all hover:scale-105"
-            >
-              See All Competitions
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Banner */}
-      <section className="py-16 bg-gradient-to-r from-primary/10 via-accent/5 to-primary/10">
+      <section className="py-8 bg-gradient-to-r from-primary/10 via-accent/5 to-primary/10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <FadeIn>
-            <h2 className="text-3xl sm:text-4xl font-black text-foreground mb-4">
+            <h2 className="text-2xl sm:text-3xl font-black text-foreground mb-2">
               Ready to Win?
             </h2>
-            <p className="text-muted text-lg mb-8 max-w-xl mx-auto font-medium">
+            <p className="text-muted text-sm sm:text-base mb-5 max-w-xl mx-auto font-medium">
               Join thousands of winners across the UK. Sign up today and get access to all our live competitions.
             </p>
             <Link
               href="/auth/register"
-              className="inline-flex px-8 py-4 bg-primary hover:bg-primary-light text-background font-bold rounded-xl text-lg transition-all hover:scale-105 glow-primary"
+              className="inline-flex px-6 py-3 bg-primary hover:bg-primary-light text-background font-bold rounded-xl text-base transition-all hover:scale-105 glow-primary"
             >
               Create Free Account
             </Link>
@@ -117,10 +118,11 @@ export default function HomePage() {
         </div>
       </section>
 
+      <TikTokFeed />
       <HowItWorksSection />
 
       {/* Threshold Info Banner */}
-      <section className="py-12 bg-card border-t border-border">
+      <section className="py-8 bg-card border-t border-border">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="bg-primary/5 border border-primary/20 rounded-2xl p-8">
             <div className="text-3xl mb-3">🛡️</div>

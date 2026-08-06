@@ -1,24 +1,24 @@
 import type { Metadata } from 'next';
-import { Inter, Poppins } from 'next/font/google';
+import { Barlow, Oswald } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 
-const inter = Inter({
-  variable: '--font-inter',
+const barlow = Barlow({
+  variable: '--font-barlow',
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800', '900'],
 });
 
-const poppins = Poppins({
-  variable: '--font-poppins',
+const oswald = Oswald({
+  variable: '--font-oswald',
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800', '900'],
+  weight: ['400', '500', '600', '700'],
 });
 
 export const metadata: Metadata = {
   title: {
-    default: 'Clutch Competitions, Win Premium Prizes',
-    template: '%s | Clutch Competitions',
+    default: 'Horsepowercomps, Win Premium Prizes',
+    template: '%s | Horsepowercomps',
   },
   description:
     'Win incredible prizes from dream cars to life-changing cash. The UK\'s most trusted competition platform with verified draws and real winners. Tickets from just £1.',
@@ -30,12 +30,12 @@ export const metadata: Metadata = {
     'win a car UK',
     'cash prizes UK',
     'online competitions UK',
-    'Clutch Competitions',
+    'Horsepowercomps',
   ],
   openGraph: {
-    title: 'Clutch Competitions, Win Premium Prizes',
+    title: 'Horsepowercomps, Win Premium Prizes',
     description: 'Win incredible prizes from dream cars to life-changing cash. Tickets from just £1.',
-    siteName: 'Clutch Competitions',
+    siteName: 'Horsepowercomps',
     locale: 'en_GB',
     type: 'website',
   },
@@ -47,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable} h-full antialiased`}>
+    <html lang="en" className={`${barlow.variable} ${oswald.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         {children}
         <Analytics />

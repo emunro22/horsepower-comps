@@ -17,7 +17,8 @@ export default function CompetitionCard({ competition, index = 0 }: CompetitionC
       style={{ animationDelay: `${index * 80}ms` }}
     >
       <Link href={`/competitions/${competition.slug}`} className="group block">
-        <div className="bg-card border border-border rounded-xl overflow-hidden transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 card-shine">
+        <div className="border-glow rounded-xl">
+        <div className="bg-card rounded-[10px] overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 card-shine">
           <div className="relative aspect-[4/3] bg-background overflow-hidden">
             <Image
               src={competition.imageUrl}
@@ -84,6 +85,7 @@ export default function CompetitionCard({ competition, index = 0 }: CompetitionC
               </div>
             </div>
           </div>
+        </div>
         </div>
       </Link>
     </div>

@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
+import Logo from '@/components/Logo';
 import { useAuth } from '@/lib/auth-context';
 
 export default function VerifyEmailPage() {
@@ -148,7 +148,7 @@ function VerifyEmailContent() {
       <div className="animate-fade-in-up w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2 mb-6">
-            <Image src="/logo.png" alt="Clutch Competitions" width={88} height={88} className="w-22 h-22 object-contain" />
+            <div className="mx-auto w-fit"><Logo size="xl" /></div>
           </Link>
           <h1 className="text-2xl font-black text-foreground mb-2">Verify Your Email</h1>
           <p className="text-muted font-medium">
