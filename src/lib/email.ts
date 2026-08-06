@@ -25,7 +25,7 @@ function emailWrapper(content: string) {
     <div style="text-align: center; margin-bottom: 32px;">
       <img src="${LOGO_URL}" alt="Clutch Competitions" width="56" height="56" style="width: 56px; height: 56px; object-fit: contain; display: inline-block;" />
       <div style="margin-top: 12px;">
-        <span style="font-size: 20px; font-weight: 800; color: #F1F5F9; letter-spacing: -0.5px;">Clutch</span><span style="font-size: 20px; font-weight: 800; color: #F59E0B; letter-spacing: -0.5px;">Comps</span>
+        <span style="font-size: 20px; font-weight: 800; color: #F1F5F9; letter-spacing: -0.5px;">Clutch </span><span style="font-size: 20px; font-weight: 800; color: #F59E0B; letter-spacing: -0.5px;">Competitions</span>
       </div>
     </div>
     <!-- Card -->

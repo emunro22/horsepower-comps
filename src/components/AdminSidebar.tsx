@@ -129,7 +129,7 @@ export default function AdminSidebar() {
               <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
                 <Image src="/logo.png" alt="Clutch Competitions" width={40} height={40} className="w-10 h-10 object-contain shrink-0" />
                 <span className="text-lg font-extrabold text-foreground">
-                  Clutch<span className="text-primary">Comps</span>
+                  Clutch <span className="text-primary">Competitions</span>
                 </span>
               </Link>
               <button
@@ -168,7 +168,7 @@ export default function AdminSidebar() {
           <Link href="/" className="flex items-center gap-2 mb-1">
             <Image src="/logo.png" alt="Clutch Competitions" width={44} height={44} className="w-11 h-11 object-contain shrink-0" />
             <span className="text-lg font-extrabold text-foreground">
-              Clutch<span className="text-primary">Comps</span>
+              Clutch <span className="text-primary">Competitions</span>
             </span>
           </Link>
           <p className="text-xs text-muted ml-10 font-semibold">Admin Portal</p>

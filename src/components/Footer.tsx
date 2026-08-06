@@ -99,7 +99,7 @@ export default function Footer() {
             <Link href="/" className="flex items-center gap-2.5 mb-4">
               <Image src="/logo.png" alt="Clutch Competitions" width={72} height={72} className="w-18 h-18 object-contain shrink-0" />
               <span className="text-xl font-extrabold text-foreground">
-                Clutch<span className="text-primary">Comps</span>
+                Clutch <span className="text-primary">Competitions</span>
               </span>
             </Link>
             <p className="text-sm text-muted max-w-xs mb-6">

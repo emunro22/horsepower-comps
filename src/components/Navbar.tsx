@@ -132,7 +132,7 @@ export default function Navbar() {
             <Image src="/logo.png" alt="Clutch Competitions" width={64} height={64} className="w-12 h-12 lg:w-16 lg:h-16 object-contain shrink-0" />
             <div className="flex flex-col">
               <span className="text-xl lg:text-2xl font-extrabold tracking-tight text-foreground whitespace-nowrap">
-                Clutch<span className="text-primary">Comps</span>
+                Clutch <span className="text-primary">Competitions</span>
               </span>
               <span className="text-xs text-muted -mt-1 hidden xl:block tracking-widest uppercase font-medium whitespace-nowrap">
                 Premium Prize Competitions
