@@ -9,7 +9,7 @@ function getResend() {
 
 const NOTIFICATION_EMAIL = 'Decolow@icloud.com';
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'Horsepowercomps <noreply@horsepowercomps.co.uk>';
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://horsepowercomps.co.uk';
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://www.horsepowercomps.co.uk';
 const LOGO_URL = `${APP_URL}/logo.png`;
 
 // ── Shared email wrapper matching the site's dark theme ──
