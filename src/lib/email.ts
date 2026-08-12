@@ -116,6 +116,79 @@ export async function sendOrderNotification({
   });
 }
 
+// ── Order pending payment verification (sent immediately at checkout,
+// before payment has been confirmed against the bank statement) ──
+
+interface PendingOrderItem {
+  competitionTitle: string;
+  quantity: number;
+}
+
+export async function sendOrderPendingConfirmation({
+  customerName,
+  customerEmail,
+  items,
+  totalPence,
+  paymentReference,
+}: {
+  customerName: string;
+  customerEmail: string;
+  items: PendingOrderItem[];
+  totalPence: number;
+  paymentReference: string;
+}) {
+  const total = `£${(totalPence / 100).toFixed(2)}`;
+  const resend = getResend();
+
+  // Admin notification
+  await resend.emails.send({
+    from: FROM_EMAIL,
+    to: NOTIFICATION_EMAIL,
+    subject: `New Order Pending Payment: ${paymentReference}`,
+    html: emailWrapper(`
+      <div style="text-align: center; margin-bottom: 24px;">
+        <div style="display: inline-block; background-color: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 50%; width: 56px; height: 56px; line-height: 56px; font-size: 24px;">⏳</div>
+        <h1 style="color: #F5F5F7; font-size: 22px; font-weight: 800; margin: 16px 0 4px 0;">New Order, Awaiting Bank Transfer</h1>
+        <p style="color: #9AA0AC; font-size: 14px; margin: 0;">A customer placed an order and needs to be checked against the bank statement</p>
+      </div>
+      <table style="width: 100%; border-collapse: collapse;">
+        ${detailRow('Reference', paymentReference)}
+        ${detailRow('Customer', customerName)}
+        ${detailRow('Email', customerEmail)}
+        ${items.map((i) => detailRow(i.competitionTitle, `${i.quantity} ticket${i.quantity > 1 ? 's' : ''}`)).join('')}
+        ${detailRow('Total', total, true)}
+      </table>
+    `),
+  });
+
+  // Customer confirmation
+  await resend.emails.send({
+    from: FROM_EMAIL,
+    to: customerEmail,
+    subject: `Order confirmed, pending payment verification`,
+    html: emailWrapper(`
+      <div style="text-align: center; margin-bottom: 24px;">
+        <div style="display: inline-block; background-color: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 50%; width: 56px; height: 56px; line-height: 56px; font-size: 24px;">⏳</div>
+        <h1 style="color: #F5F5F7; font-size: 22px; font-weight: 800; margin: 16px 0 4px 0;">Order Confirmed, ${customerName.split(' ')[0]}</h1>
+        <p style="color: #9AA0AC; font-size: 14px; margin: 0;">We'll check you've paid and assign your tickets shortly</p>
+      </div>
+      <table style="width: 100%; border-collapse: collapse;">
+        ${items.map((i) => detailRow(i.competitionTitle, `${i.quantity} ticket${i.quantity > 1 ? 's' : ''}`)).join('')}
+        ${detailRow('Total Due', total, true)}
+        ${detailRow('Your Reference', paymentReference, true)}
+      </table>
+      <div style="margin-top: 24px; text-align: center;">
+        <p style="color: #F5F5F7; font-size: 14px; line-height: 1.6; margin: 0 0 8px 0;">
+          Your order is confirmed. We will check you have successfully paid via bank transfer, and you will then be assigned your ticket numbers within the next 24 hours.
+        </p>
+        <p style="color: #9AA0AC; font-size: 13px; margin: 0;">
+          Please make sure your transfer includes the reference above (${paymentReference}) — we can't match your payment without it.
+        </p>
+      </div>
+    `),
+  });
+}
+
 // ── Spin purchase notification ──
 
 export async function sendSpinOrderNotification({

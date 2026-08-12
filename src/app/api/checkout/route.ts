@@ -5,6 +5,7 @@ import { eq } from 'drizzle-orm';
 import { v4 as uuid } from 'uuid';
 import { checkSkillAnswer } from '@/lib/skill-questions';
 import { BANK_TRANSFER_DETAILS, generatePaymentReference } from '@/lib/bank-transfer';
+import { sendOrderPendingConfirmation } from '@/lib/email';
 
 interface CartItem {
   competitionId: string;
@@ -92,6 +93,18 @@ export async function POST(request: Request) {
         status: 'pending',
         paymentReference,
       });
+    }
+
+    try {
+      await sendOrderPendingConfirmation({
+        customerName: user.name,
+        customerEmail: user.email,
+        items: orderRecords.map((r) => ({ competitionTitle: r.competitionTitle, quantity: r.quantity })),
+        totalPence,
+        paymentReference,
+      });
+    } catch (emailError) {
+      console.error('Failed to send order pending confirmation email:', emailError);
     }
 
     return Response.json({
