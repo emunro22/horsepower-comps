@@ -115,6 +115,7 @@ export const orders = pgTable('orders', {
   totalPence: integer('total_pence').notNull(),
   status: orderStatusEnum('status').default('pending').notNull(),
   stripeSessionId: text('stripe_session_id'),
+  paymentReference: text('payment_reference'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 

@@ -1,10 +1,10 @@
 import { getSession } from '@/lib/auth';
-import { stripe } from '@/lib/stripe';
 import { db } from '@/lib/db';
 import { competitions, orders } from '@/lib/db/schema';
-import { eq, sql } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 import { v4 as uuid } from 'uuid';
 import { checkSkillAnswer } from '@/lib/skill-questions';
+import { BANK_TRANSFER_DETAILS, generatePaymentReference } from '@/lib/bank-transfer';
 
 interface CartItem {
   competitionId: string;
@@ -38,7 +38,6 @@ export async function POST(request: Request) {
       return Response.json({ error: 'Cart is empty' }, { status: 400 });
     }
 
-    const lineItems: { price_data: { currency: string; product_data: { name: string; description?: string }; unit_amount: number }; quantity: number }[] = [];
     const orderRecords: { id: string; competitionId: string; quantity: number; totalPence: number; competitionTitle: string }[] = [];
 
     for (const item of items) {
@@ -70,18 +69,6 @@ export async function POST(request: Request) {
       const totalPence = comp.ticketPrice * item.quantity;
       const orderId = uuid();
 
-      lineItems.push({
-        price_data: {
-          currency: 'gbp',
-          product_data: {
-            name: `${comp.title}, ${item.quantity} ticket${item.quantity > 1 ? 's' : ''}`,
-            description: `Competition entry tickets`,
-          },
-          unit_amount: comp.ticketPrice,
-        },
-        quantity: item.quantity,
-      });
-
       orderRecords.push({
         id: orderId,
         competitionId: comp.id,
@@ -91,7 +78,12 @@ export async function POST(request: Request) {
       });
     }
 
-    // Create pending orders in DB
+    // Card payments are temporarily unavailable, so orders are created as
+    // pending and fulfilled manually once a matching bank transfer is
+    // confirmed in the admin orders screen (see /admin/orders).
+    const paymentReference = generatePaymentReference();
+    const totalPence = orderRecords.reduce((sum, r) => sum + r.totalPence, 0);
+
     for (const record of orderRecords) {
       await db.insert(orders).values({
         id: record.id,
@@ -100,28 +92,19 @@ export async function POST(request: Request) {
         quantity: record.quantity,
         totalPence: record.totalPence,
         status: 'pending',
+        paymentReference,
       });
     }
 
-    const origin = request.headers.get('origin') || 'https://horsepowercomps.co.uk';
-
-    const session = await stripe.checkout.sessions.create({
-      mode: 'payment',
-      payment_method_types: ['card'],
-      customer_email: user.email,
-      line_items: lineItems,
-      metadata: {
-        userId: user.id,
-        userName: user.name,
-        orderIds: orderRecords.map((o) => o.id).join(','),
+    return Response.json({
+      bankTransfer: {
+        reference: paymentReference,
+        totalPence,
+        ...BANK_TRANSFER_DETAILS,
       },
-      success_url: `${origin}/account/tickets?success=true`,
-      cancel_url: `${origin}/competitions?cancelled=true`,
     });
-
-    return Response.json({ url: session.url });
   } catch (error) {
     console.error('Checkout error:', error);
-    return Response.json({ error: 'Failed to create checkout session' }, { status: 500 });
+    return Response.json({ error: 'Failed to create your order' }, { status: 500 });
   }
 }

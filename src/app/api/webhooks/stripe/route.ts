@@ -1,11 +1,10 @@
 import { stripe } from '@/lib/stripe';
 import { db } from '@/lib/db';
-import { orders, tickets, competitions, users, wheelSpins, wheelGames } from '@/lib/db/schema';
-import { eq, sql } from 'drizzle-orm';
-import { sendOrderNotification, sendSpinOrderNotification } from '@/lib/email';
-import { claimInstantWins } from '@/lib/instant-wins';
+import { wheelSpins, wheelGames, users } from '@/lib/db/schema';
+import { eq } from 'drizzle-orm';
+import { sendSpinOrderNotification } from '@/lib/email';
 import { resolveSpin } from '@/lib/wheel';
-import { v4 as uuid } from 'uuid';
+import { fulfillOrder } from '@/lib/orders';
 
 export async function POST(request: Request) {
   const body = await request.text();
@@ -78,92 +77,7 @@ export async function POST(request: Request) {
     const orderIdList = orderIds.split(',');
 
     for (const orderId of orderIdList) {
-      const [order] = await db
-        .select()
-        .from(orders)
-        .where(eq(orders.id, orderId))
-        .limit(1);
-
-      if (!order || order.status === 'paid') continue;
-
-      // Mark order as paid
-      await db
-        .update(orders)
-        .set({ status: 'paid', stripeSessionId: session.id })
-        .where(eq(orders.id, orderId));
-
-      // Get competition to find current ticket count
-      const [comp] = await db
-        .select()
-        .from(competitions)
-        .where(eq(competitions.id, order.competitionId))
-        .limit(1);
-
-      if (!comp) continue;
-
-      // Create individual ticket records
-      const startNumber = comp.ticketsSold + 1;
-      const issuedTickets: { ticketId: string; ticketNumber: number; userId: string }[] = [];
-      for (let i = 0; i < order.quantity; i++) {
-        const ticketId = uuid();
-        const ticketNumber = startNumber + i;
-        await db.insert(tickets).values({
-          id: ticketId,
-          userId: order.userId,
-          competitionId: order.competitionId,
-          ticketNumber,
-          orderId: order.id,
-        });
-        issuedTickets.push({ ticketId, ticketNumber, userId: order.userId });
-      }
-
-      // Update tickets sold count on competition first, so the instant win
-      // activation check below sees the up-to-date revenue for this competition.
-      await db
-        .update(competitions)
-        .set({
-          ticketsSold: sql`${competitions.ticketsSold} + ${order.quantity}`,
-          updatedAt: new Date(),
-        })
-        .where(eq(competitions.id, order.competitionId));
-
-      try {
-        await claimInstantWins(order.competitionId, issuedTickets);
-      } catch (instantWinError) {
-        console.error('Failed to process instant wins:', instantWinError);
-      }
-
-      // Check if competition is now sold out
-      const newSold = comp.ticketsSold + order.quantity;
-      if (newSold >= comp.totalTickets) {
-        await db
-          .update(competitions)
-          .set({ status: 'sold_out' })
-          .where(eq(competitions.id, order.competitionId));
-      }
-
-      // Get user info for email
-      const [user] = await db
-        .select({ name: users.name, email: users.email })
-        .from(users)
-        .where(eq(users.id, order.userId))
-        .limit(1);
-
-      // Send notification emails
-      if (user) {
-        try {
-          await sendOrderNotification({
-            customerName: user.name,
-            customerEmail: user.email,
-            competitionTitle: comp.title,
-            quantity: order.quantity,
-            totalPence: order.totalPence,
-            orderId: order.id,
-          });
-        } catch (emailError) {
-          console.error('Failed to send order notification email:', emailError);
-        }
-      }
+      await fulfillOrder(orderId, { stripeSessionId: session.id });
     }
   }
 

@@ -14,6 +14,14 @@ interface SkillQuestion {
   options: string[];
 }
 
+interface BankTransferDetails {
+  reference: string;
+  totalPence: number;
+  accountName: string;
+  sortCode: string;
+  accountNumber: string;
+}
+
 export default function CartDrawer() {
   const { cart, cartOpen, setCartOpen, removeFromCart, updateCartQuantity, cartTotal, cartCount, clearCart } = useStore();
   const { user } = useAuth();
@@ -22,6 +30,7 @@ export default function CartDrawer() {
   const [error, setError] = useState('');
   const [skillQuestion, setSkillQuestion] = useState<SkillQuestion | null>(null);
   const [skillAnswerIndex, setSkillAnswerIndex] = useState<number | null>(null);
+  const [bankTransfer, setBankTransfer] = useState<BankTransferDetails | null>(null);
 
   const fetchSkillQuestion = useCallback(async () => {
     setSkillAnswerIndex(null);
@@ -79,9 +88,10 @@ export default function CartDrawer() {
         return;
       }
 
-      if (data.url) {
+      if (data.bankTransfer) {
         clearCart();
-        window.location.href = data.url;
+        setBankTransfer(data.bankTransfer);
+        setCheckingOut(false);
       }
     } catch {
       setError('Something went wrong. Please try again.');
@@ -92,17 +102,25 @@ export default function CartDrawer() {
 
   if (!cartOpen) return null;
 
+  const handleClose = () => {
+    setCartOpen(false);
+    setBankTransfer(null);
+    setError('');
+  };
+
   return (
     <>
-      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50" onClick={() => setCartOpen(false)} />
+      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50" onClick={handleClose} />
       <div className="fixed top-0 right-0 bottom-0 w-full max-w-md bg-surface border-l border-border z-50 flex flex-col animate-fade-in">
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-border">
           <h2 className="text-lg font-black text-foreground">
-            Your Cart {cartCount > 0 && <span className="text-primary">({cartCount})</span>}
+            {bankTransfer ? 'Complete Your Payment' : (
+              <>Your Cart {cartCount > 0 && <span className="text-primary">({cartCount})</span>}</>
+            )}
           </h2>
           <button
-            onClick={() => setCartOpen(false)}
+            onClick={handleClose}
             className="p-2 text-muted hover:text-foreground transition-colors"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -113,7 +131,55 @@ export default function CartDrawer() {
 
         {/* Content */}
         <div className="flex-1 overflow-y-auto">
-          {cart.length === 0 ? (
+          {bankTransfer ? (
+            <div className="p-6 space-y-5">
+              <div className="bg-primary/10 border border-primary/20 rounded-xl p-4 text-center">
+                <p className="text-sm font-bold text-foreground">
+                  Almost there! Transfer the amount below to confirm your entry.
+                </p>
+                <p className="text-xs text-muted font-medium mt-1">
+                  We&apos;ll issue your tickets as soon as we see the payment land — usually the same day.
+                </p>
+              </div>
+
+              <div className="bg-card border border-border rounded-xl divide-y divide-border/50">
+                <div className="flex items-center justify-between px-4 py-3">
+                  <span className="text-sm text-muted font-semibold">Amount to pay</span>
+                  <span className="text-lg font-black text-foreground">{formatPrice(bankTransfer.totalPence)}</span>
+                </div>
+                <div className="flex items-center justify-between px-4 py-3">
+                  <span className="text-sm text-muted font-semibold">Account name</span>
+                  <span className="text-sm font-bold text-foreground">{bankTransfer.accountName}</span>
+                </div>
+                <div className="flex items-center justify-between px-4 py-3">
+                  <span className="text-sm text-muted font-semibold">Sort code</span>
+                  <span className="text-sm font-bold text-foreground">{bankTransfer.sortCode}</span>
+                </div>
+                <div className="flex items-center justify-between px-4 py-3">
+                  <span className="text-sm text-muted font-semibold">Account number</span>
+                  <span className="text-sm font-bold text-foreground">{bankTransfer.accountNumber}</span>
+                </div>
+                <div className="flex items-center justify-between px-4 py-3">
+                  <span className="text-sm text-muted font-semibold">Payment reference</span>
+                  <span className="text-sm font-black text-primary">{bankTransfer.reference}</span>
+                </div>
+              </div>
+
+              <div className="bg-danger/10 border border-danger/20 rounded-xl p-3">
+                <p className="text-xs text-danger font-bold text-center">
+                  You must include the reference &ldquo;{bankTransfer.reference}&rdquo; on your transfer, or we won&apos;t be able to match your payment.
+                </p>
+              </div>
+
+              <Link
+                href="/account/tickets"
+                onClick={handleClose}
+                className="block w-full text-center py-3 bg-primary hover:bg-primary-light text-background font-black rounded-xl transition-colors"
+              >
+                Done
+              </Link>
+            </div>
+          ) : cart.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full p-6 text-center">
               <div className="text-5xl mb-4">🎫</div>
               <h3 className="text-lg font-bold text-foreground mb-2">Cart is empty</h3>
@@ -228,7 +294,7 @@ export default function CartDrawer() {
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                   </svg>
-                  Redirecting to payment...
+                  Creating your order...
                 </span>
               ) : !user ? (
                 'Log in to Checkout'
@@ -237,7 +303,7 @@ export default function CartDrawer() {
               )}
             </button>
             <p className="text-xs text-muted text-center font-medium">
-              Secure checkout powered by Stripe. You must be 18+ to enter.
+              We&apos;re currently only accepting payment by bank transfer. You must be 18+ to enter.
             </p>
           </div>
         )}
