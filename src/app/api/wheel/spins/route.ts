@@ -1,4 +1,4 @@
-import { getSession } from '@/lib/auth';
+import { requireVerifiedUser } from '@/lib/auth';
 import { stripe } from '@/lib/stripe';
 import { db } from '@/lib/db';
 import { wheelGames, wheelSpins } from '@/lib/db/schema';
@@ -7,10 +7,8 @@ import { v4 as uuid } from 'uuid';
 
 export async function POST(request: Request) {
   try {
-    const user = await getSession();
-    if (!user) {
-      return Response.json({ error: 'You must be logged in to spin' }, { status: 401 });
-    }
+    const { user, error: authError } = await requireVerifiedUser();
+    if (authError) return authError;
 
     const body = await request.json();
     const gameId: string | undefined = body.gameId;

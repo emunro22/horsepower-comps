@@ -1,4 +1,4 @@
-import { getSession } from '@/lib/auth';
+import { requireVerifiedUser } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { competitions, orders } from '@/lib/db/schema';
 import { eq } from 'drizzle-orm';
@@ -13,10 +13,8 @@ interface CartItem {
 
 export async function POST(request: Request) {
   try {
-    const user = await getSession();
-    if (!user) {
-      return Response.json({ error: 'You must be logged in to checkout' }, { status: 401 });
-    }
+    const { user, error: authError } = await requireVerifiedUser();
+    if (authError) return authError;
 
     const body = await request.json();
     const items: CartItem[] = body.items;

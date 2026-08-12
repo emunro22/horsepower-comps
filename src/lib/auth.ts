@@ -13,6 +13,7 @@ export interface AuthUser {
   email: string;
   name: string;
   role: 'user' | 'admin';
+  emailVerified: boolean;
 }
 
 export interface JwtPayload {
@@ -48,6 +49,7 @@ export async function getSession(): Promise<AuthUser | null> {
         email: users.email,
         name: users.name,
         role: users.role,
+        emailVerified: users.emailVerified,
       })
       .from(users)
       .where(eq(users.id, payload.userId))
@@ -57,6 +59,31 @@ export async function getSession(): Promise<AuthUser | null> {
   } catch {
     return null;
   }
+}
+
+// Use for any route that spends the user's money (checkout, spins, etc.) so
+// a session alone is never enough — the account must also have a verified,
+// reachable email address before it can be charged or credited.
+export async function requireVerifiedUser(): Promise<
+  { user: AuthUser; error: null } | { user: null; error: Response }
+> {
+  const user = await getSession();
+
+  if (!user) {
+    return { user: null, error: Response.json({ error: 'You must be logged in to continue' }, { status: 401 }) };
+  }
+
+  if (!user.emailVerified) {
+    return {
+      user: null,
+      error: Response.json(
+        { error: 'Please verify your email address before making a purchase' },
+        { status: 403 }
+      ),
+    };
+  }
+
+  return { user, error: null };
 }
 
 export function setAuthCookie(token: string): { name: string; value: string; options: Record<string, unknown> } {
