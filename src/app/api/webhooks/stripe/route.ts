@@ -4,7 +4,7 @@ import { wheelSpins, wheelGames, users } from '@/lib/db/schema';
 import { eq } from 'drizzle-orm';
 import { sendSpinOrderNotification } from '@/lib/email';
 import { resolveSpin } from '@/lib/wheel';
-import { fulfillOrder } from '@/lib/orders';
+import { markOrderPaid } from '@/lib/orders';
 
 export async function POST(request: Request) {
   const body = await request.text();
@@ -77,7 +77,7 @@ export async function POST(request: Request) {
     const orderIdList = orderIds.split(',');
 
     for (const orderId of orderIdList) {
-      await fulfillOrder(orderId, { stripeSessionId: session.id });
+      await markOrderPaid(orderId, { stripeSessionId: session.id });
     }
   }
 

@@ -1,5 +1,5 @@
 import { getSession } from '@/lib/auth';
-import { fulfillOrder } from '@/lib/orders';
+import { markOrderPaid } from '@/lib/orders';
 
 export async function POST(request: Request, { params }: { params: Promise<{ id: string }> }) {
   const admin = await getSession();
@@ -10,7 +10,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
   const { id } = await params;
 
   try {
-    await fulfillOrder(id);
+    await markOrderPaid(id);
     return Response.json({ success: true });
   } catch (error) {
     console.error('Mark order paid error:', error);

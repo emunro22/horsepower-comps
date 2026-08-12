@@ -135,10 +135,10 @@ export default function CartDrawer() {
             <div className="p-6 space-y-5">
               <div className="bg-primary/10 border border-primary/20 rounded-xl p-4 text-center">
                 <p className="text-sm font-bold text-foreground">
-                  Almost there! Transfer the amount below to confirm your entry.
+                  You&apos;re entered! Your tickets have been issued — check your email for confirmation.
                 </p>
                 <p className="text-xs text-muted font-medium mt-1">
-                  We&apos;ll issue your tickets as soon as we see the payment land — usually the same day.
+                  Please complete the bank transfer below as soon as possible to secure your entry.
                 </p>
               </div>
 

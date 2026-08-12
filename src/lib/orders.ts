@@ -5,19 +5,24 @@ import { sendOrderNotification } from './email';
 import { claimInstantWins } from './instant-wins';
 import { v4 as uuid } from 'uuid';
 
-// Marks a pending order as paid, issues its tickets, updates the
-// competition's sold count, runs instant-win checks, and emails the
-// customer. Shared between the Stripe webhook and manual (bank transfer)
-// payment confirmation, since both ultimately do the same fulfillment once
-// an order is known to be paid.
-export async function fulfillOrder(orderId: string, opts: { stripeSessionId?: string } = {}) {
+// Issues an order's tickets, updates the competition's sold count, runs
+// instant-win checks, and emails the customer. Idempotent — if tickets have
+// already been issued for this order (checked via a row in `tickets`), it's
+// a no-op. Called immediately at checkout (trust-based: tickets and the
+// confirmation email go out before payment is confirmed) and again by
+// markOrderPaid() as a safety net for payment paths that don't pre-issue
+// (e.g. the Stripe webhook), where the idempotency check makes it a no-op
+// the second time it's called for a given order.
+export async function issueOrderTickets(orderId: string) {
   const [order] = await db.select().from(orders).where(eq(orders.id, orderId)).limit(1);
-  if (!order || order.status === 'paid') return;
+  if (!order) return;
 
-  await db
-    .update(orders)
-    .set({ status: 'paid', stripeSessionId: opts.stripeSessionId ?? order.stripeSessionId })
-    .where(eq(orders.id, orderId));
+  const [existingTicket] = await db
+    .select({ id: tickets.id })
+    .from(tickets)
+    .where(eq(tickets.orderId, orderId))
+    .limit(1);
+  if (existingTicket) return;
 
   const [comp] = await db
     .select()
@@ -81,4 +86,18 @@ export async function fulfillOrder(orderId: string, opts: { stripeSessionId?: st
       console.error('Failed to send order notification email:', emailError);
     }
   }
+}
+
+// Marks an order as paid (bookkeeping, for admin reconciliation / revenue
+// reporting) and ensures its tickets have been issued.
+export async function markOrderPaid(orderId: string, opts: { stripeSessionId?: string } = {}) {
+  const [order] = await db.select().from(orders).where(eq(orders.id, orderId)).limit(1);
+  if (!order || order.status === 'paid') return;
+
+  await db
+    .update(orders)
+    .set({ status: 'paid', stripeSessionId: opts.stripeSessionId ?? order.stripeSessionId })
+    .where(eq(orders.id, orderId));
+
+  await issueOrderTickets(orderId);
 }
