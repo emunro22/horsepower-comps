@@ -5,7 +5,6 @@ import { eq } from 'drizzle-orm';
 import { v4 as uuid } from 'uuid';
 import { checkSkillAnswer } from '@/lib/skill-questions';
 import { BANK_TRANSFER_DETAILS, generatePaymentReference } from '@/lib/bank-transfer';
-import { issueOrderTickets } from '@/lib/orders';
 
 interface CartItem {
   competitionId: string;
@@ -93,14 +92,6 @@ export async function POST(request: Request) {
         status: 'pending',
         paymentReference,
       });
-    }
-
-    // Trust model: tickets, instant wins, and the confirmation email go out
-    // immediately rather than waiting for payment to be manually confirmed.
-    // The order stays 'pending' so it still shows up for reconciliation
-    // against the bank statement in /admin/orders.
-    for (const record of orderRecords) {
-      await issueOrderTickets(record.id);
     }
 
     return Response.json({

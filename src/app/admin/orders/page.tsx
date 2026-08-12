@@ -29,7 +29,7 @@ export default function AdminOrdersPage() {
   }, []);
 
   const handleMarkPaid = async (order: PendingOrder) => {
-    if (!confirm(`Mark this order as paid?\n\n${order.userName} — ${order.competitionTitle} (${order.quantity} tickets)\n£${(order.totalPence / 100).toFixed(2)}\n\nTheir tickets were already issued at checkout — this just confirms payment was received.`)) {
+    if (!confirm(`Mark this order as paid?\n\n${order.userName} — ${order.competitionTitle} (${order.quantity} tickets)\n£${(order.totalPence / 100).toFixed(2)}\n\nThis will issue their tickets immediately.`)) {
       return;
     }
 
@@ -66,7 +66,7 @@ export default function AdminOrdersPage() {
       <div className="animate-fade-in-up mb-8">
         <h1 className="text-2xl sm:text-3xl font-black text-foreground mb-1">Pending Orders</h1>
         <p className="text-muted font-medium">
-          Tickets and confirmation emails are already sent for these orders. Cross-check your bank account for a matching reference, then mark paid to confirm payment was received.
+          Bank transfer orders awaiting payment confirmation. Check your bank account for a matching reference, then mark paid to issue tickets.
         </p>
       </div>
 
