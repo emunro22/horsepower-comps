@@ -71,7 +71,9 @@ const sections: { title: string; body: React.ReactNode }[] = [
         unable to offer refunds, exchanges, or cancellations, except: (a) where we cancel a
         competition prior to its draw under Section 9; or (b) where you are otherwise entitled
         to a refund under the Consumer Contracts (Information, Cancellation and Additional
-        Charges) Regulations 2013 or other applicable consumer law.
+        Charges) Regulations 2013 or other applicable consumer law. A competition that runs past
+        its advertised draw date under the automatic extension described in Section 6 is not a
+        cancellation and does not itself entitle you to a refund.
         Entry into a prize competition is a service that begins as soon as your ticket is
         allocated and entered into the draw, so by completing checkout you acknowledge that
         performance begins immediately and that the standard 14-day cancellation right does not
@@ -84,11 +86,12 @@ const sections: { title: string; body: React.ReactNode }[] = [
     title: '6. Draw Guarantee',
     body: (
       <p>
-        Every competition draws on the advertised draw date shown on its competition page,
-        whatever the number of tickets sold by that date. We do not cancel, downgrade, or
-        postpone a competition, and do not extend the draw date, because of low ticket sales.
-        The advertised prize, or its cash alternative, is always awarded to the winning ticket
-        selected on that date.
+        Every competition must sell out before it is drawn. If a competition has not sold out by
+        its advertised draw date, it automatically continues and remains open for ticket sales
+        for a further 30 days. If it still has not sold out by then, it is automatically extended
+        for another 30 days, and this repeats for as long as it takes to sell out. Once a
+        competition sells out, it is drawn automatically. A competition is never cancelled, and
+        the decision to extend or draw is never left to our discretion.
       </p>
     ),
   },
@@ -96,7 +99,7 @@ const sections: { title: string; body: React.ReactNode }[] = [
     title: '7. The Draw &amp; Winner Selection',
     body: (
       <p>
-        Once a competition&apos;s draw date has passed, the winning ticket is selected using a
+        Once a competition has sold out under Section 6, the winning ticket is selected using a
         cryptographically secure random number generator, so
         that every issued ticket (whether purchased or received via free postal entry) has an
         equal chance of winning. Winners are notified by email and/or phone using the details
@@ -190,10 +193,11 @@ export default function TermsPage() {
       <div className="animate-fade-in-up bg-primary/5 border border-primary/20 rounded-2xl p-6 mb-8 flex items-start gap-3">
         <div className="text-xl mt-0.5">🛡️</div>
         <p className="text-sm text-foreground font-medium leading-relaxed">
-          In short: every competition <span className="font-bold">draws on its advertised date,
-          whatever the ticket sales</span> &mdash; we never cancel, downgrade, or extend a
-          competition because it hasn&apos;t sold enough tickets. The advertised prize, or its
-          cash alternative, is always awarded.
+          In short: every competition must <span className="font-bold">sell out before it&apos;s
+          drawn</span>. If it hasn&apos;t sold out by the draw date, it&apos;s
+          <span className="font-bold"> automatically extended by 30 days, repeating for as long
+          as it takes</span> &mdash; never cancelled, and never left to discretion. Once it sells
+          out, it&apos;s drawn automatically.
         </p>
       </div>
 

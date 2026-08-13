@@ -136,8 +136,9 @@ export default function CompetitionDetailPage({
               <div>
                 <h3 className="font-bold text-foreground text-sm mb-1">Draw Guaranteed</h3>
                 <p className="text-xs text-muted font-medium leading-relaxed">
-                  This competition will draw on its advertised date, whatever the ticket sales. The prize is always
-                  awarded, or the cash alternative paid, as scheduled.
+                  This competition is guaranteed to be drawn. If it hasn&apos;t sold enough tickets by the draw date it
+                  automatically extends, up to a maximum of 30 days, and always draws automatically at that point &mdash;
+                  never cancelled, and never left to discretion.
                 </p>
               </div>
             </div>

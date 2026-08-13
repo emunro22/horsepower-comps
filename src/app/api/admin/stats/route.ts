@@ -88,7 +88,6 @@ export async function GET() {
         date: c.drawDate,
         sold: `${c.ticketsSold.toLocaleString()}/${c.totalTickets.toLocaleString()}`,
         percent: Math.round((c.ticketsSold / c.totalTickets) * 100),
-        threshold: c.minimumSoldPercentage,
       })),
     });
   } catch (error) {

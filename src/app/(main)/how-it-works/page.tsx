@@ -7,7 +7,7 @@ const steps = [
   { number: '02', title: 'Browse Competitions', description: 'Explore our range of incredible prizes, from dream cars and luxury holidays to cash prizes and the latest tech. Filter by category, price, or ending soonest.', icon: '🔍' },
   { number: '03', title: 'Choose Your Tickets, or Enter Free', description: `Select how many tickets you want, each ticket is one entry into the draw. Prefer not to pay? Every competition also has a free postal entry route with an equal chance of winning: ${FREE_ENTRY_INSTRUCTIONS} Post to: ${FREE_ENTRY_ADDRESS}.`, icon: '🎫' },
   { number: '04', title: 'Secure Checkout', description: 'Complete your order securely at checkout. Your payment and personal details are handled with care and never stored insecurely on our servers.', icon: '🔒' },
-  { number: '05', title: 'Winner is Drawn', description: 'On the advertised draw date, a winner is selected using a cryptographically secure random number generator. Every competition draws on schedule, however many tickets have sold.', icon: '🎲' },
+  { number: '05', title: 'Winner is Drawn', description: 'Once a competition sells out, a winner is selected using a cryptographically secure random number generator. The winning ticket number is published for full transparency.', icon: '🎲' },
   { number: '06', title: 'Claim Your Prize!', description: 'Winners are contacted directly by our team. Cash prizes are transferred within 48 hours. Physical prizes are delivered to your door within 14 working days. Where a cash alternative is offered, you choose!', icon: '🏆' },
 ];
 
@@ -71,8 +71,9 @@ export default function HowItWorksPage() {
         <div className="text-3xl mb-3">🛡️</div>
         <h2 className="text-xl font-black text-foreground mb-3">Draw Guarantee</h2>
         <p className="text-sm text-muted max-w-lg mx-auto font-medium leading-relaxed">
-          Every competition draws on its advertised date, no matter how many tickets have sold. The prize is always
-          awarded, or the cash alternative paid, as scheduled &mdash; we never cancel or downgrade a competition for low sales.
+          Every competition must sell out before it&apos;s drawn. If it hasn&apos;t sold out by the draw date, it automatically
+          extends by 30 days, repeating for as long as it takes &mdash; never cancelled, and never left to discretion. Once it
+          sells out, it draws automatically.
         </p>
       </FadeIn>
 

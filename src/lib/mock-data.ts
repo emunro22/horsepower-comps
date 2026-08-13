@@ -210,7 +210,7 @@ export const competitions: Competition[] = [
 export const faqs = [
   {
     question: 'How does Horse Power Competitions work?',
-    answer: 'Horse Power Competitions runs prize competitions where you purchase tickets for a chance to win incredible prizes. Each competition has a set number of tickets and a draw date. When the draw date arrives, we randomly select a winner using a verified random number generator, whatever the ticket sales. It\'s that simple!',
+    answer: 'Horse Power Competitions runs prize competitions where you purchase tickets for a chance to win incredible prizes. Each competition has a set number of tickets and a draw date. Once a competition sells out, we randomly select a winner using a verified random number generator. It\'s that simple!',
   },
   {
     question: 'Is Horse Power Competitions legitimate?',
@@ -237,8 +237,8 @@ export const faqs = [
     answer: 'Each competition has a maximum ticket limit per person, which is displayed on the competition page. This ensures fairness and gives everyone a great chance of winning.',
   },
   {
-    question: 'Is the draw guaranteed to happen?',
-    answer: 'Yes. Every competition draws on its advertised date, however many tickets have sold by then. We never cancel, downgrade, or postpone a competition for low sales — the advertised prize, or its cash alternative, is always awarded to the winning ticket.',
+    question: 'What happens if a competition hasn\'t sold out by the draw date?',
+    answer: 'Every competition must sell out before it\'s drawn. If it hasn\'t sold out by the draw date, it\'s automatically extended by 30 days — and this repeats for as long as it takes to sell out. A competition is never cancelled, and the decision to extend is never left to our discretion. Once it sells out, it\'s drawn automatically.',
   },
   {
     question: 'Can I choose the cash alternative instead of the prize?',

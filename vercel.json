@@ -1,6 +1,10 @@
 {
   "crons": [
     {
+      "path": "/api/cron/auto-extend",
+      "schedule": "0 0 * * *"
+    },
+    {
       "path": "/api/cron/marketing-email",
       "schedule": "0 9 * * *"
     }

@@ -121,8 +121,9 @@ export default function HomePage() {
             <div className="text-3xl mb-3">🛡️</div>
             <h3 className="text-xl font-black text-foreground mb-2">Draw Guarantee</h3>
             <p className="text-sm text-muted max-w-lg mx-auto font-medium leading-relaxed">
-              Every competition draws on its advertised date, no matter how many tickets have sold. The prize is always
-              awarded, or the cash alternative paid, as scheduled &mdash; we never cancel or downgrade a competition for low sales.
+              Every competition must sell out before it&apos;s drawn. If it hasn&apos;t sold out by the draw date, it
+              automatically extends by 30 days, repeating for as long as it takes &mdash; never cancelled, and never left
+              to discretion. Once it sells out, it draws automatically.
             </p>
           </div>
         </div>
