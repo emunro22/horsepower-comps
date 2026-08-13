@@ -1,7 +1,7 @@
 import { requireVerifiedUser } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { competitions, orders } from '@/lib/db/schema';
-import { eq } from 'drizzle-orm';
+import { eq, and, gte } from 'drizzle-orm';
 import { v4 as uuid } from 'uuid';
 import { checkSkillAnswer } from '@/lib/skill-questions';
 import { BANK_TRANSFER_DETAILS, generatePaymentReference } from '@/lib/bank-transfer';
@@ -77,11 +77,47 @@ export async function POST(request: Request) {
       });
     }
 
+    const totalPence = orderRecords.reduce((sum, r) => sum + r.totalPence, 0);
+
+    // Duplicate-submission guard: if this exact cart (same competitions +
+    // quantities) was already submitted by this user in the last 5 minutes,
+    // return that existing order's bank transfer details instead of
+    // creating new ones — covers double-clicks, page reloads, and repeat
+    // submissions from confusion about whether the first one went through.
+    const recentWindow = new Date(Date.now() - 5 * 60 * 1000);
+    const recentPending = await db
+      .select()
+      .from(orders)
+      .where(and(eq(orders.userId, user.id), eq(orders.status, 'pending'), gte(orders.createdAt, recentWindow)));
+
+    const recentGroups = new Map<string, typeof recentPending>();
+    for (const o of recentPending) {
+      if (!o.paymentReference) continue;
+      const group = recentGroups.get(o.paymentReference) ?? [];
+      group.push(o);
+      recentGroups.set(o.paymentReference, group);
+    }
+
+    for (const [ref, group] of recentGroups) {
+      if (group.length !== orderRecords.length) continue;
+      const isSameCart = orderRecords.every((r) =>
+        group.some((g) => g.competitionId === r.competitionId && g.quantity === r.quantity)
+      );
+      if (isSameCart) {
+        return Response.json({
+          bankTransfer: {
+            reference: ref,
+            totalPence: group.reduce((sum, g) => sum + g.totalPence, 0),
+            ...BANK_TRANSFER_DETAILS,
+          },
+        });
+      }
+    }
+
     // Card payments are temporarily unavailable, so orders are created as
     // pending and fulfilled manually once a matching bank transfer is
     // confirmed in the admin orders screen (see /admin/orders).
     const paymentReference = generatePaymentReference();
-    const totalPence = orderRecords.reduce((sum, r) => sum + r.totalPence, 0);
 
     for (const record of orderRecords) {
       await db.insert(orders).values({

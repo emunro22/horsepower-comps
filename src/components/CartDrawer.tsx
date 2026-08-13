@@ -5,7 +5,7 @@ import { useAuth } from '@/lib/auth-context';
 import { formatPrice } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 
 interface SkillQuestion {
@@ -31,6 +31,8 @@ export default function CartDrawer() {
   const [skillQuestion, setSkillQuestion] = useState<SkillQuestion | null>(null);
   const [skillAnswerIndex, setSkillAnswerIndex] = useState<number | null>(null);
   const [bankTransfer, setBankTransfer] = useState<BankTransferDetails | null>(null);
+  const [doneClicked, setDoneClicked] = useState(false);
+  const submittingRef = useRef(false);
 
   const fetchSkillQuestion = useCallback(async () => {
     setSkillAnswerIndex(null);
@@ -50,6 +52,11 @@ export default function CartDrawer() {
   }, [cartOpen, user, fetchSkillQuestion]);
 
   const handleCheckout = async () => {
+    // Guards against rapid double-clicks firing two submissions before React
+    // re-renders the disabled button — `checkingOut` state alone isn't fast
+    // enough to catch that race, since state updates aren't synchronous.
+    if (submittingRef.current) return;
+
     setError('');
 
     if (!user) {
@@ -63,6 +70,7 @@ export default function CartDrawer() {
       return;
     }
 
+    submittingRef.current = true;
     setCheckingOut(true);
 
     try {
@@ -83,7 +91,6 @@ export default function CartDrawer() {
 
       if (!res.ok) {
         setError(data.error || 'Checkout failed');
-        setCheckingOut(false);
         fetchSkillQuestion();
         return;
       }
@@ -91,12 +98,13 @@ export default function CartDrawer() {
       if (data.bankTransfer) {
         clearCart();
         setBankTransfer(data.bankTransfer);
-        setCheckingOut(false);
       }
     } catch {
       setError('Something went wrong. Please try again.');
-      setCheckingOut(false);
       fetchSkillQuestion();
+    } finally {
+      submittingRef.current = false;
+      setCheckingOut(false);
     }
   };
 
@@ -105,7 +113,17 @@ export default function CartDrawer() {
   const handleClose = () => {
     setCartOpen(false);
     setBankTransfer(null);
+    setDoneClicked(false);
     setError('');
+  };
+
+  const handleDone = () => {
+    if (doneClicked) return;
+    setDoneClicked(true);
+    setTimeout(() => {
+      handleClose();
+      router.push('/account/tickets');
+    }, 700);
   };
 
   return (
@@ -171,13 +189,14 @@ export default function CartDrawer() {
                 </p>
               </div>
 
-              <Link
-                href="/account/tickets"
-                onClick={handleClose}
-                className="block w-full text-center py-3 bg-primary hover:bg-primary-light text-background font-black rounded-xl transition-colors"
+              <button
+                type="button"
+                onClick={handleDone}
+                disabled={doneClicked}
+                className="block w-full text-center py-3 bg-primary hover:bg-primary-light text-background font-black rounded-xl transition-colors disabled:opacity-70"
               >
-                Done
-              </Link>
+                {doneClicked ? 'Thanks! Redirecting…' : 'Done'}
+              </button>
             </div>
           ) : cart.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full p-6 text-center">
