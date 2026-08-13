@@ -29,10 +29,18 @@ export async function POST(request: Request) {
 
     const pct = Math.round((comp.ticketsSold / comp.totalTickets) * 100);
     if (pct < comp.minimumSoldPercentage) {
-      return Response.json(
-        { error: `Threshold not met, ${pct}% sold, needs ${comp.minimumSoldPercentage}%` },
-        { status: 400 }
-      );
+      const baseDate = comp.originalDrawDate ?? comp.drawDate;
+      const capDate = new Date(baseDate.getTime() + 30 * 24 * 60 * 60 * 1000);
+      const isCapped = new Date() >= capDate;
+
+      if (!isCapped) {
+        return Response.json(
+          { error: `Threshold not met, ${pct}% sold, needs ${comp.minimumSoldPercentage}%` },
+          { status: 400 }
+        );
+      }
+      // Past the 30-day auto-extension cap — an admin can force the draw on
+      // tickets actually sold rather than holding customer money forever.
     }
 
     // Pick a random ticket from paid orders

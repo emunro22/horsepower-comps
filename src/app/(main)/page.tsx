@@ -129,7 +129,7 @@ export default function HomePage() {
             <h3 className="text-xl font-black text-foreground mb-2">Draw Guarantee</h3>
             <p className="text-sm text-muted max-w-lg mx-auto font-medium leading-relaxed">
               Every competition has a minimum ticket threshold (typically 85%). If the threshold isn&apos;t met by the draw date,
-              the competition is automatically extended until it&apos;s reached, every competition will always have a winner.
+              the competition is automatically extended, up to a maximum of 30 days, giving it the best chance of reaching its goal.
             </p>
           </div>
         </div>

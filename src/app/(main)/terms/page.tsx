@@ -60,9 +60,9 @@ const sections: { title: string; body: React.ReactNode }[] = [
         </span>{' '}
         Because every ticket is immediately allocated a unique number and entered into the draw,
         we are unable to offer refunds, exchanges, or cancellations once an order has been
-        completed, except where required by law (for example, where a competition is cancelled
-        by us before the draw takes place). Please choose your ticket quantity carefully before
-        completing checkout.
+        completed, except where required by law, or where a competition does not reach its
+        minimum ticket threshold within the 30-day extension window described in Section 6.
+        Please choose your ticket quantity carefully before completing checkout.
       </p>
     ),
   },
@@ -72,10 +72,10 @@ const sections: { title: string; body: React.ReactNode }[] = [
       <p>
         Every competition has a minimum ticket sales threshold, shown as a percentage on the
         competition page (typically 85%). If that threshold has not been reached by the
-        advertised draw date, the competition is not cancelled and no refunds are issued &mdash;
-        instead, the competition will automatically continue and remain open for ticket sales
-        until the threshold is met, however long that takes, at which point the draw will take
-        place. This guarantees that every competition we run will always produce a winner.
+        advertised draw date, the competition will automatically continue and remain open for
+        ticket sales, for a maximum of 30 days past the original draw date. If the threshold
+        still hasn&apos;t been reached at that point, we will either draw a winner from the
+        tickets actually sold, or refund entrants for that competition, at our discretion.
       </p>
     ),
   },
@@ -175,10 +175,11 @@ export default function TermsPage() {
       <div className="animate-fade-in-up bg-primary/5 border border-primary/20 rounded-2xl p-6 mb-8 flex items-start gap-3">
         <div className="text-xl mt-0.5">🛡️</div>
         <p className="text-sm text-foreground font-medium leading-relaxed">
-          In short: <span className="font-bold">all sales are final (no refunds)</span>, and{' '}
-          <span className="font-bold">every competition runs until its minimum ticket threshold
-          is met</span> &mdash; it will never be cancelled for low sales, only extended, so a
-          winner is always guaranteed.
+          In short: if a competition doesn&apos;t reach its minimum ticket threshold by the draw
+          date, it&apos;s <span className="font-bold">automatically extended, up to a maximum of
+          30 days</span> &mdash; never cancelled outright. If the threshold still isn&apos;t met
+          after that, we&apos;ll either <span className="font-bold">draw a winner from the
+          tickets sold, or refund entrants</span> for that competition.
         </p>
       </div>
 

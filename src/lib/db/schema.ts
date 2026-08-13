@@ -79,6 +79,7 @@ export const competitions = pgTable('competitions', {
   totalTickets: integer('total_tickets').notNull(),
   ticketsSold: integer('tickets_sold').default(0).notNull(),
   drawDate: timestamp('draw_date').notNull(),
+  originalDrawDate: timestamp('original_draw_date'),
   category: varchar('category', { length: 100 }).notNull(),
   status: competitionStatusEnum('status').default('draft').notNull(),
   featured: boolean('featured').default(false).notNull(),

@@ -35,7 +35,12 @@ export async function PUT(
     if (body.cashAlternative !== undefined) updates.cashAlternative = body.cashAlternative;
     if (body.ticketPrice !== undefined) updates.ticketPrice = body.ticketPrice;
     if (body.totalTickets !== undefined) updates.totalTickets = body.totalTickets;
-    if (body.drawDate !== undefined) updates.drawDate = new Date(body.drawDate);
+    if (body.drawDate !== undefined) {
+      // A manual admin edit resets the 30-day auto-extension window, since
+      // it's a deliberate reschedule rather than an automatic extension.
+      updates.drawDate = new Date(body.drawDate);
+      updates.originalDrawDate = new Date(body.drawDate);
+    }
     if (body.category !== undefined) updates.category = body.category;
     if (body.status !== undefined) updates.status = body.status;
     if (body.featured !== undefined) updates.featured = body.featured;

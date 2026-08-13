@@ -81,6 +81,7 @@ export async function POST(request: Request) {
       ticketPrice,
       totalTickets,
       drawDate: new Date(drawDate),
+      originalDrawDate: new Date(drawDate),
       category,
       status: status || 'draft',
       featured: featured || false,

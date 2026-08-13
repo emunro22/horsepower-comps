@@ -71,7 +71,7 @@ export default function HowItWorksPage() {
         <h2 className="text-xl font-black text-foreground mb-3">Draw Guarantee</h2>
         <p className="text-sm text-muted max-w-lg mx-auto font-medium leading-relaxed">
           Every competition has a minimum ticket threshold (typically 85%). If the threshold isn&apos;t met by the draw date,
-          the competition is automatically extended until the threshold is reached, so every competition will always have a winner.
+          the competition is automatically extended, up to a maximum of 30 days, giving it the best chance of reaching its goal.
           The threshold and countdown are clearly displayed on each competition page so you always know where things stand.
         </p>
       </FadeIn>

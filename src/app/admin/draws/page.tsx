@@ -9,8 +9,17 @@ interface Competition {
   totalTickets: number;
   ticketsSold: number;
   drawDate: string;
+  originalDrawDate: string | null;
   status: string;
   minimumSoldPercentage: number;
+}
+
+const MAX_EXTENSION_DAYS = 30;
+
+function isExtensionCapped(comp: Competition): boolean {
+  const baseDate = new Date(comp.originalDrawDate ?? comp.drawDate);
+  const capDate = new Date(baseDate.getTime() + MAX_EXTENSION_DAYS * 24 * 60 * 60 * 1000);
+  return new Date() >= capDate;
 }
 
 interface DrawResult {
@@ -124,6 +133,7 @@ export default function AdminDrawsPage() {
               if (!comp) return null;
               const pct = percentSold(comp.ticketsSold, comp.totalTickets);
               const thresholdMet = pct >= comp.minimumSoldPercentage;
+              const capped = !thresholdMet && isExtensionCapped(comp);
               return (
                 <div className="bg-background rounded-xl p-4 mb-5 space-y-2">
                   <div className="flex justify-between text-sm">
@@ -146,7 +156,14 @@ export default function AdminDrawsPage() {
                       {new Date(comp.drawDate).toLocaleDateString('en-GB')}
                     </span>
                   </div>
-                  {!thresholdMet && (
+                  {!thresholdMet && capped && (
+                    <div className="mt-2 bg-danger/10 border border-danger/20 rounded-lg p-3">
+                      <p className="text-xs text-danger font-bold">
+                        30-day extension limit reached at {pct}% sold. You can now force a draw on tickets actually sold, or refund customers instead — outside this system for now.
+                      </p>
+                    </div>
+                  )}
+                  {!thresholdMet && !capped && (
                     <div className="mt-2 bg-primary/10 border border-primary/20 rounded-lg p-3">
                       <p className="text-xs text-primary font-bold">
                         Draw blocked, {comp.minimumSoldPercentage}% threshold not reached ({pct}% sold)
