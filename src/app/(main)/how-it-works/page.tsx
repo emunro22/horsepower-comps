@@ -14,7 +14,7 @@ const steps = [
 const trustPoints = [
   { title: 'Provably Fair', description: 'Every draw uses a cryptographically secure random number generator. The winning ticket number is published on the Site for every competition, so the result is fully traceable.', icon: '🎲' },
   { title: 'UK Based', description: 'Horse Power Competitions operates fully within UK competition law. We take compliance seriously so you can enter with confidence.', icon: '📋' },
-  { title: 'Real Winners', description: 'We publish all our winners with their permission. Check out our Winners page to see real people who\'ve won real prizes.', icon: '✅' },
+  { title: 'Free Entry Route', description: 'Every competition can be entered for free by post, with no purchase necessary, for an equal chance of winning as a paid ticket.', icon: '✉️' },
   { title: 'Secure Payments', description: 'All payments are handled securely at checkout. Your card details never touch our servers.', icon: '🔐' },
 ];
 
@@ -52,7 +52,7 @@ export default function HowItWorksPage() {
       <FadeIn className="text-center mb-12">
         <h2 className="text-3xl font-black text-foreground mb-4">Why Trust Horse Power Competitions?</h2>
         <p className="text-muted text-lg max-w-2xl mx-auto font-medium">
-          We&apos;re committed to running the fairest, most transparent competitions in the UK.
+          We&apos;re committed to running fair, transparent competitions.
         </p>
       </FadeIn>
 
@@ -72,8 +72,8 @@ export default function HowItWorksPage() {
         <h2 className="text-xl font-black text-foreground mb-3">Draw Guarantee</h2>
         <p className="text-sm text-muted max-w-lg mx-auto font-medium leading-relaxed">
           Every competition must sell out before it&apos;s drawn. If it hasn&apos;t sold out by the draw date, it automatically
-          extends by 30 days, repeating for as long as it takes &mdash; never cancelled, and never left to discretion. Once it
-          sells out, it draws automatically.
+          extends by 30 days, repeating for as long as it takes &mdash; never cancelled, and never replaced with a refund.
+          Once it sells out, our team runs the draw.
         </p>
       </FadeIn>
 

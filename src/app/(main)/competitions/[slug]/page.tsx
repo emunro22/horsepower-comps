@@ -1,6 +1,6 @@
 'use client';
 
-import { use, useState } from 'react';
+import { use, useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { formatPrice, formatPriceShort, isVideoUrl } from '@/lib/utils';
@@ -18,6 +18,15 @@ export default function CompetitionDetailPage({
   const { slug } = use(params);
   const competition = useCompetition(slug);
   const [activeImage, setActiveImage] = useState(0);
+  const [winningTicketNumber, setWinningTicketNumber] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (competition?.status !== 'drawn') return;
+    fetch(`/api/competitions/${slug}`)
+      .then((r) => r.json())
+      .then((data) => setWinningTicketNumber(data.competition?.winningTicketNumber ?? null))
+      .catch(console.error);
+  }, [competition?.status, slug]);
 
   if (!competition) {
     return (
@@ -129,20 +138,36 @@ export default function CompetitionDetailPage({
             </p>
           </div>
 
-          {/* Draw Guarantee Notice */}
-          <div className="border rounded-2xl p-5 bg-success/5 border-success/20">
-            <div className="flex items-start gap-3">
-              <div className="text-xl mt-0.5">🛡️</div>
-              <div>
-                <h3 className="font-bold text-foreground text-sm mb-1">Draw Guaranteed</h3>
-                <p className="text-xs text-muted font-medium leading-relaxed">
-                  This competition is guaranteed to be drawn. If it hasn&apos;t sold enough tickets by the draw date it
-                  automatically extends, up to a maximum of 30 days, and always draws automatically at that point &mdash;
-                  never cancelled, and never left to discretion.
-                </p>
+          {/* Draw Guarantee / Winner Notice */}
+          {competition.status === 'drawn' ? (
+            <div className="border rounded-2xl p-5 bg-success/5 border-success/20">
+              <div className="flex items-start gap-3">
+                <div className="text-xl mt-0.5">🏆</div>
+                <div>
+                  <h3 className="font-bold text-foreground text-sm mb-1">Winner Drawn</h3>
+                  <p className="text-xs text-muted font-medium leading-relaxed">
+                    {winningTicketNumber !== null
+                      ? `The winning ticket was #${String(winningTicketNumber).padStart(4, '0')}, selected using a cryptographically secure random number generator.`
+                      : 'This competition has been drawn.'}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="border rounded-2xl p-5 bg-success/5 border-success/20">
+              <div className="flex items-start gap-3">
+                <div className="text-xl mt-0.5">🛡️</div>
+                <div>
+                  <h3 className="font-bold text-foreground text-sm mb-1">Draw Guaranteed</h3>
+                  <p className="text-xs text-muted font-medium leading-relaxed">
+                    This competition must sell out before it&apos;s drawn. If it hasn&apos;t sold out by the draw date
+                    shown, it automatically extends by 30 days &mdash; repeating for as long as it takes to sell out.
+                    There&apos;s no refund for an extension. Once it sells out, our team runs the draw.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
 
           <div className="bg-card border border-border rounded-2xl p-6">
             <h2 className="text-lg font-bold text-foreground mb-4">Competition Details</h2>
@@ -174,6 +199,9 @@ export default function CompetitionDetailPage({
               <div className="flex justify-center">
                 <CountdownTimer endDate={competition.drawDate} />
               </div>
+              <p className="text-[11px] text-muted/70 font-medium mt-3">
+                Extends automatically if not sold out by this date
+              </p>
             </div>
 
             <div className="bg-card border border-border rounded-2xl p-6">

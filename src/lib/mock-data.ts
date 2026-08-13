@@ -238,7 +238,7 @@ export const faqs = [
   },
   {
     question: 'What happens if a competition hasn\'t sold out by the draw date?',
-    answer: 'Every competition must sell out before it\'s drawn. If it hasn\'t sold out by the draw date, it\'s automatically extended by 30 days — and this repeats for as long as it takes to sell out. A competition is never cancelled, and the decision to extend is never left to our discretion. Once it sells out, it\'s drawn automatically.',
+    answer: 'Every competition must sell out before it\'s drawn. If it hasn\'t sold out by the draw date, it\'s automatically extended by 30 days — and this repeats for as long as it takes to sell out. A competition is never cancelled, and the decision to extend is never left to our discretion. Once it sells out, our team runs the draw.',
   },
   {
     question: 'Can I choose the cash alternative instead of the prize?',

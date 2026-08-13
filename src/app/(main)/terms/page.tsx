@@ -89,9 +89,10 @@ const sections: { title: string; body: React.ReactNode }[] = [
         Every competition must sell out before it is drawn. If a competition has not sold out by
         its advertised draw date, it automatically continues and remains open for ticket sales
         for a further 30 days. If it still has not sold out by then, it is automatically extended
-        for another 30 days, and this repeats for as long as it takes to sell out. Once a
-        competition sells out, it is drawn automatically. A competition is never cancelled, and
-        the decision to extend or draw is never left to our discretion.
+        for another 30 days, and this repeats for as long as it takes to sell out &mdash; this
+        extension is automatic and is never left to our discretion. Once a competition sells out,
+        our team runs the draw, often live on our social media channels. A sold-out competition
+        is never cancelled and never replaced with a refund in place of a draw.
       </p>
     ),
   },
@@ -196,8 +197,8 @@ export default function TermsPage() {
           In short: every competition must <span className="font-bold">sell out before it&apos;s
           drawn</span>. If it hasn&apos;t sold out by the draw date, it&apos;s
           <span className="font-bold"> automatically extended by 30 days, repeating for as long
-          as it takes</span> &mdash; never cancelled, and never left to discretion. Once it sells
-          out, it&apos;s drawn automatically.
+          as it takes</span> &mdash; never cancelled, and never replaced with a refund. Once it
+          sells out, our team runs the draw.
         </p>
       </div>
 

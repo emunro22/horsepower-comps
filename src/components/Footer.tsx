@@ -47,7 +47,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-sm text-muted max-w-xs mb-6">
-              The UK&apos;s premier prize competition platform. Win incredible prizes from cars to cash, tech to holidays.
+              A Glasgow-based prize competition platform. Win incredible prizes from cars to cash, tech to holidays.
             </p>
             <p className="text-xs text-muted max-w-xs mb-6">
               {FREE_ENTRY_ADDRESS} &middot;{' '}

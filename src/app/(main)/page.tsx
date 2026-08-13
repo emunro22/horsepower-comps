@@ -122,8 +122,8 @@ export default function HomePage() {
             <h3 className="text-xl font-black text-foreground mb-2">Draw Guarantee</h3>
             <p className="text-sm text-muted max-w-lg mx-auto font-medium leading-relaxed">
               Every competition must sell out before it&apos;s drawn. If it hasn&apos;t sold out by the draw date, it
-              automatically extends by 30 days, repeating for as long as it takes &mdash; never cancelled, and never left
-              to discretion. Once it sells out, it draws automatically.
+              automatically extends by 30 days, repeating for as long as it takes &mdash; never cancelled, and never
+              replaced with a refund. Once it sells out, our team runs the draw.
             </p>
           </div>
         </div>

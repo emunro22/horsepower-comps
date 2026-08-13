@@ -1,5 +1,5 @@
 import { db } from '@/lib/db';
-import { competitions, competitionImages } from '@/lib/db/schema';
+import { competitions, competitionImages, winners, tickets } from '@/lib/db/schema';
 import { eq } from 'drizzle-orm';
 
 const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1642961597907-fc6fbff01720?w=800&h=600&fit=crop&q=80';
@@ -30,6 +30,17 @@ export async function GET(
       ? galleryRows.map((img) => img.url)
       : [competition.imageUrl || FALLBACK_IMAGE];
 
+    let winningTicketNumber: number | null = null;
+    if (competition.status === 'drawn') {
+      const [winnerRow] = await db
+        .select({ ticketNumber: tickets.ticketNumber })
+        .from(winners)
+        .innerJoin(tickets, eq(winners.ticketId, tickets.id))
+        .where(eq(winners.competitionId, competition.id))
+        .limit(1);
+      winningTicketNumber = winnerRow?.ticketNumber ?? null;
+    }
+
     return Response.json({
       competition: {
         id: competition.id,
@@ -49,6 +60,7 @@ export async function GET(
         featured: competition.featured,
         maxPerPerson: competition.maxPerPerson,
         minimumSoldPercentage: competition.minimumSoldPercentage,
+        winningTicketNumber,
       },
     });
   } catch (error) {

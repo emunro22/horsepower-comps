@@ -20,6 +20,11 @@ const sections: { title: string; body: React.ReactNode }[] = [
           in, remember the contents of your cart, and are required for the Site to function.
           These cannot be switched off.
         </li>
+        <li>
+          <span className="font-bold text-foreground">Analytics:</span> we use Vercel Web
+          Analytics to understand how the Site is used. It does not use cookies or store any
+          personal identifiers, so no separate consent is needed for it.
+        </li>
       </ul>
     ),
   },

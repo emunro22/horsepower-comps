@@ -366,64 +366,6 @@ export async function sendWheelWinNotification({
   });
 }
 
-// ── Draw winner notification (competition prize draws) ──
-
-export async function sendDrawWinnerNotification({
-  customerName,
-  customerEmail,
-  competitionTitle,
-  ticketNumber,
-}: {
-  customerName: string;
-  customerEmail: string;
-  competitionTitle: string;
-  ticketNumber: number;
-}) {
-  const resend = getResend();
-
-  await resend.emails.send({
-    from: FROM_EMAIL,
-    to: NOTIFICATION_EMAIL,
-    subject: `Draw completed: ${competitionTitle}`,
-    html: emailWrapper(`
-      <div style="text-align: center; margin-bottom: 24px;">
-        <div style="display: inline-block; background-color: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 50%; width: 56px; height: 56px; line-height: 56px; font-size: 24px;">🏆</div>
-        <h1 style="color: #F5F5F7; font-size: 22px; font-weight: 800; margin: 16px 0 4px 0;">Draw Completed</h1>
-        <p style="color: #9AA0AC; font-size: 14px; margin: 0;">A winner has been drawn and notified automatically</p>
-      </div>
-      <table style="width: 100%; border-collapse: collapse;">
-        ${detailRow('Competition', competitionTitle)}
-        ${detailRow('Winner', customerName)}
-        ${detailRow('Email', customerEmail)}
-        ${detailRow('Winning Ticket', `#${String(ticketNumber).padStart(4, '0')}`, true)}
-      </table>
-    `),
-  });
-
-  await resend.emails.send({
-    from: FROM_EMAIL,
-    to: customerEmail,
-    subject: `🏆 You've won: ${competitionTitle}!`,
-    html: emailWrapper(`
-      <div style="text-align: center; margin-bottom: 24px;">
-        <div style="display: inline-block; background-color: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 50%; width: 56px; height: 56px; line-height: 56px; font-size: 24px;">🏆</div>
-        <h1 style="color: #F5F5F7; font-size: 22px; font-weight: 800; margin: 16px 0 4px 0;">Congratulations, ${customerName.split(' ')[0]}!</h1>
-        <p style="color: #9AA0AC; font-size: 14px; margin: 0;">Your ticket was drawn as the winner</p>
-      </div>
-      <table style="width: 100%; border-collapse: collapse;">
-        ${detailRow('Competition', competitionTitle)}
-        ${detailRow('Winning Ticket', `#${String(ticketNumber).padStart(4, '0')}`, true)}
-      </table>
-      <div style="margin-top: 24px; text-align: center;">
-        <p style="color: #9AA0AC; font-size: 13px; margin: 0 0 16px 0;">Our team will be in touch shortly to arrange delivery of your prize, or your cash alternative if one was offered.</p>
-        <div style="display: inline-block; background: linear-gradient(135deg, #D91E36, #F0293F); border-radius: 12px; padding: 14px 32px;">
-          <a href="${APP_URL}/account/tickets" style="color: #08080C; text-decoration: none; font-weight: 800; font-size: 15px;">View My Tickets</a>
-        </div>
-      </div>
-    `),
-  });
-}
-
 // ── Verification code email ──
 
 export async function sendVerificationCode({

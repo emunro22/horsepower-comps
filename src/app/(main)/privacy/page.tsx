@@ -41,8 +41,10 @@ const sections: { title: string; body: React.ReactNode }[] = [
     body: (
       <p>
         We share the minimum data necessary with trusted third parties who help us run the Site:
-        Resend (transactional email delivery) and Vercel Blob
-        (secure storage for competition images). We do not sell your personal data to anyone.
+        Vercel (website hosting and infrastructure), Neon (database hosting), Resend (transactional
+        email delivery), and Vercel Blob (secure storage for competition images). Once card payments
+        are back in place, our payment processor will be added here too. We do not sell your
+        personal data to anyone.
       </p>
     ),
   },
