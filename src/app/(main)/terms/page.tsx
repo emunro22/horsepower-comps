@@ -10,7 +10,7 @@ const sections: { title: string; body: React.ReactNode }[] = [
         Glasgow-based business operating prize competitions at horsepowercomps.co.uk (the
         &quot;Site&quot;). We trade as Horse Power Competitions from{' '}
         <span className="font-bold text-foreground">{FREE_ENTRY_ADDRESS}</span>, and you can
-        contact us by email at decolow@icloud.com or via our{' '}
+        contact us by email at hello@horsepowercomps.co.uk or via our{' '}
         <Link href="/contact" className="text-primary hover:text-primary-light font-semibold">
           Contact
         </Link>{' '}

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: '%s | Horse Power Competitions',
   },
   description:
-    'Win incredible prizes from dream cars to life-changing cash. The UK\'s most trusted competition platform with verified draws and real winners. Tickets from just £1.',
+    'Win incredible prizes from dream cars to life-changing cash. Provably fair draws and a free postal entry route on every competition. Tickets from just £1.',
   keywords: [
     'competitions UK',
     'win prizes UK',

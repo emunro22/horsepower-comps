@@ -32,7 +32,7 @@ export default function ContactPage() {
                 </svg>
               ),
               title: 'Email Us',
-              value: 'decolow@icloud.com',
+              value: 'hello@horsepowercomps.co.uk',
               sub: 'We reply within 24 hours',
             },
             {

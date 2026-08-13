@@ -7,7 +7,7 @@ import AnnouncementMarquee from './AnnouncementMarquee';
 const GENERIC_MESSAGES = [
   'Tickets from just £1 — enter now',
   'New competitions launching soon',
-  '100% Verified Draws — real winners every week',
+  'Free postal entry available on every competition',
 ];
 
 async function getLiveCompetitionMessages() {

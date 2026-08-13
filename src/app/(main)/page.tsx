@@ -100,7 +100,7 @@ export default function HomePage() {
               Ready to Win?
             </h2>
             <p className="text-muted text-sm sm:text-base mb-5 max-w-xl mx-auto font-medium">
-              Join thousands of winners across the UK. Sign up today and get access to all our live competitions.
+              Sign up today and get access to all our live competitions.
             </p>
             <Link
               href="/auth/register"

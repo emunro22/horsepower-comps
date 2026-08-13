@@ -12,7 +12,7 @@ const steps = [
 ];
 
 const trustPoints = [
-  { title: 'Provably Fair', description: 'Every draw uses a cryptographically secure random number generator. Results are published with verification hashes so anyone can independently verify fairness.', icon: '🎲' },
+  { title: 'Provably Fair', description: 'Every draw uses a cryptographically secure random number generator. The winning ticket number is published on the Site for every competition, so the result is fully traceable.', icon: '🎲' },
   { title: 'UK Based', description: 'Horse Power Competitions operates fully within UK competition law. We take compliance seriously so you can enter with confidence.', icon: '📋' },
   { title: 'Real Winners', description: 'We publish all our winners with their permission. Check out our Winners page to see real people who\'ve won real prizes.', icon: '✅' },
   { title: 'Secure Payments', description: 'All payments are handled securely at checkout. Your card details never touch our servers.', icon: '🔐' },

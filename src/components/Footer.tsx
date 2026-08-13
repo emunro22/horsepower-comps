@@ -51,8 +51,8 @@ export default function Footer() {
             </p>
             <p className="text-xs text-muted max-w-xs mb-6">
               {FREE_ENTRY_ADDRESS} &middot;{' '}
-              <a href="mailto:decolow@icloud.com" className="hover:text-primary transition-colors">
-                decolow@icloud.com
+              <a href="mailto:hello@horsepowercomps.co.uk" className="hover:text-primary transition-colors">
+                hello@horsepowercomps.co.uk
               </a>
             </p>
             <div className="flex gap-3">

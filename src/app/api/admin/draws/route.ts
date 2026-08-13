@@ -1,3 +1,4 @@
+import { randomInt } from 'crypto';
 import { getSession } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { competitions, tickets, users, winners, orders } from '@/lib/db/schema';
@@ -43,8 +44,12 @@ export async function POST(request: Request) {
       // tickets actually sold rather than holding customer money forever.
     }
 
-    // Pick a random ticket from paid orders
-    const [winningTicket] = await db
+    // Pick a winning ticket using a cryptographically secure random index
+    // (Node's crypto.randomInt, a CSPRNG) rather than Postgres's random(),
+    // which is a fast but non-cryptographic PRNG - the site's copy promises
+    // a "cryptographically secure random number generator" and this is what
+    // actually backs that claim.
+    const eligibleTicketsQuery = db
       .select({
         ticketId: tickets.id,
         ticketNumber: tickets.ticketNumber,
@@ -57,9 +62,27 @@ export async function POST(request: Request) {
           eq(tickets.competitionId, competitionId),
           eq(orders.status, 'paid')
         )
-      )
-      .orderBy(sql`random()`)
-      .limit(1);
+      );
+
+    const [{ count: eligibleCount }] = await db
+      .select({ count: sql<number>`count(*)::int` })
+      .from(tickets)
+      .innerJoin(orders, eq(tickets.orderId, orders.id))
+      .where(
+        and(
+          eq(tickets.competitionId, competitionId),
+          eq(orders.status, 'paid')
+        )
+      );
+
+    if (!eligibleCount) {
+      return Response.json({ error: 'No paid tickets found for this competition' }, { status: 400 });
+    }
+
+    const [winningTicket] = await eligibleTicketsQuery
+      .orderBy(tickets.ticketNumber)
+      .limit(1)
+      .offset(randomInt(eligibleCount));
 
     if (!winningTicket) {
       return Response.json({ error: 'No paid tickets found for this competition' }, { status: 400 });

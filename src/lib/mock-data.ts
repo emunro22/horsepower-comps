@@ -246,6 +246,6 @@ export const faqs = [
   },
   {
     question: 'How do I know the competitions are fair?',
-    answer: 'Every draw uses a verified random number generator with results published publicly. Our draw process is fully auditable and we publish the winning ticket number, time of draw, and verification hash for complete transparency.',
+    answer: 'Every draw uses a cryptographically secure random number generator. We publish the winning ticket number and time of the draw on the competition page for full transparency.',
   },
 ];
