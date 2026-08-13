@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import FadeIn from '@/components/FadeIn';
+import { FREE_ENTRY_ADDRESS, FREE_ENTRY_INSTRUCTIONS } from '@/lib/free-entry';
 
 const steps = [
   { number: '01', title: 'Create Your Account', description: 'Sign up for free in under 30 seconds. All you need is your name, email, and to confirm you\'re 18+. No credit card required to create an account.', icon: '👤' },
   { number: '02', title: 'Browse Competitions', description: 'Explore our range of incredible prizes, from dream cars and luxury holidays to cash prizes and the latest tech. Filter by category, price, or ending soonest.', icon: '🔍' },
-  { number: '03', title: 'Choose Your Tickets', description: 'Select how many tickets you want. Each ticket gives you one entry into the draw. The more tickets you have, the better your chances! All competitions have a maximum ticket limit per person to keep things fair.', icon: '🎫' },
+  { number: '03', title: 'Choose Your Tickets, or Enter Free', description: `Select how many tickets you want, each ticket is one entry into the draw. Prefer not to pay? Every competition also has a free postal entry route with an equal chance of winning: ${FREE_ENTRY_INSTRUCTIONS} Post to: ${FREE_ENTRY_ADDRESS}.`, icon: '🎫' },
   { number: '04', title: 'Secure Checkout', description: 'Complete your order securely at checkout. Your payment and personal details are handled with care and never stored insecurely on our servers.', icon: '🔒' },
   { number: '05', title: 'Winner is Drawn', description: 'Once the ticket threshold is met, a winner is selected using a cryptographically secure random number generator. The winning ticket number is published for full transparency.', icon: '🎲' },
   { number: '06', title: 'Claim Your Prize!', description: 'Winners are contacted directly by our team. Cash prizes are transferred within 48 hours. Physical prizes are delivered to your door within 14 working days. Where a cash alternative is offered, you choose!', icon: '🏆' },

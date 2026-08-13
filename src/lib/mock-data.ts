@@ -1,3 +1,5 @@
+import { FREE_ENTRY_ADDRESS } from './free-entry';
+
 export interface Competition {
   id: string;
   title: string;
@@ -212,7 +214,7 @@ export const faqs = [
   },
   {
     question: 'Is Horsepowercomps legitimate?',
-    answer: 'Absolutely! Horsepowercomps is a registered UK company operating fully within UK competition law. All draws are conducted transparently using provably fair random number generation, and winners are announced on our website and social media channels.',
+    answer: 'Absolutely! Horsepowercomps is a UK-based business operating fully within UK competition law. All draws are conducted transparently using provably fair random number generation, and winners are announced on our website and social media channels.',
   },
   {
     question: 'How are winners chosen?',
@@ -228,7 +230,7 @@ export const faqs = [
   },
   {
     question: 'Is there a free entry method?',
-    answer: 'Yes, in accordance with UK competition law, a free postal entry method is available for all competitions. Full details can be found in our Terms & Conditions.',
+    answer: `Yes. In accordance with UK competition law, every competition can also be entered for free by post, with no purchase necessary, for an equal chance of winning. Write your name, address, email, date of birth, and the competition name on a postcard and post it to: ${FREE_ENTRY_ADDRESS}. Full details can be found in our Terms & Conditions.`,
   },
   {
     question: 'How many tickets can I buy?',
@@ -236,7 +238,7 @@ export const faqs = [
   },
   {
     question: 'What happens if the minimum ticket threshold isn\'t met?',
-    answer: 'Each competition has a minimum sold percentage (typically 85%). If this threshold is not met by the draw date, the competition is automatically extended until the threshold is reached. This means every competition will always have a winner. The threshold and countdown are clearly displayed on each competition page.',
+    answer: 'Each competition has a minimum sold percentage (typically 85%). If this threshold is not met by the draw date, the competition is automatically extended, up to a maximum of 30 days past the original draw date. If the threshold still isn\'t met at that point, we\'ll either draw a winner from the tickets sold, or refund entrants for that competition. The threshold and countdown are clearly displayed on each competition page.',
   },
   {
     question: 'Can I choose the cash alternative instead of the prize?',
