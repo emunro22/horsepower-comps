@@ -17,8 +17,8 @@ const oswald = Oswald({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Horsepowercomps, Win Premium Prizes',
-    template: '%s | Horsepowercomps',
+    default: 'Horse Power Competitions, Win Premium Prizes',
+    template: '%s | Horse Power Competitions',
   },
   description:
     'Win incredible prizes from dream cars to life-changing cash. The UK\'s most trusted competition platform with verified draws and real winners. Tickets from just £1.',
@@ -30,12 +30,12 @@ export const metadata: Metadata = {
     'win a car UK',
     'cash prizes UK',
     'online competitions UK',
-    'Horsepowercomps',
+    'Horse Power Competitions',
   ],
   openGraph: {
-    title: 'Horsepowercomps, Win Premium Prizes',
+    title: 'Horse Power Competitions, Win Premium Prizes',
     description: 'Win incredible prizes from dream cars to life-changing cash. Tickets from just £1.',
-    siteName: 'Horsepowercomps',
+    siteName: 'Horse Power Competitions',
     locale: 'en_GB',
     type: 'website',
   },

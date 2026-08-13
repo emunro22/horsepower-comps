@@ -5,7 +5,7 @@ const sections: { title: string; body: React.ReactNode }[] = [
     title: '1. Play Responsibly',
     body: (
       <p>
-        Horsepowercomps is intended to be a fun way to enter for the chance to win great
+        Horse Power Competitions is intended to be a fun way to enter for the chance to win great
         prizes. Our competitions require entrants to answer a skill-testing question, so they are
         not games of pure chance, but we still want everyone who takes part to do so responsibly
         and within their means.

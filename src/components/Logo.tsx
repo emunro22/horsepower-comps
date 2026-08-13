@@ -12,7 +12,7 @@ export default function Logo({ size = 'md' }: { size?: keyof typeof sizeConfig }
   return (
     <Image
       src="/logo.png"
-      alt="Horsepowercomps"
+      alt="Horse Power Competitions"
       width={px}
       height={px}
       className={`${className} object-contain shrink-0`}

@@ -8,7 +8,7 @@ function getResend() {
 }
 
 const NOTIFICATION_EMAIL = 'Decolow@icloud.com';
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'Horsepowercomps <noreply@horsepowercomps.co.uk>';
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'Horse Power Competitions <noreply@horsepowercomps.co.uk>';
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://www.horsepowercomps.co.uk';
 const LOGO_URL = `${APP_URL}/logo.png`;
 
@@ -23,9 +23,9 @@ function emailWrapper(content: string) {
   <div style="max-width: 600px; margin: 0 auto; padding: 40px 20px;">
     <!-- Header -->
     <div style="text-align: center; margin-bottom: 32px;">
-      <img src="${LOGO_URL}" alt="Horsepowercomps" width="56" height="56" style="width: 56px; height: 56px; object-fit: contain; display: inline-block;" />
+      <img src="${LOGO_URL}" alt="Horse Power Competitions" width="56" height="56" style="width: 56px; height: 56px; object-fit: contain; display: inline-block;" />
       <div style="margin-top: 12px;">
-        <span style="font-size: 20px; font-weight: 800; color: #F5F5F7; letter-spacing: -0.5px;">HORSEPOWER</span><span style="font-size: 20px; font-weight: 800; color: #D91E36; letter-spacing: -0.5px;">COMPS</span>
+        <span style="font-size: 20px; font-weight: 800; color: #F5F5F7; letter-spacing: -0.5px;">HORSE POWER</span> <span style="font-size: 20px; font-weight: 800; color: #D91E36; letter-spacing: -0.5px;">COMPETITIONS</span>
       </div>
     </div>
     <!-- Card -->
@@ -34,7 +34,7 @@ function emailWrapper(content: string) {
     </div>
     <!-- Footer -->
     <div style="text-align: center; padding-top: 16px;">
-      <p style="color: #9AA0AC; font-size: 12px; margin: 0;">Horsepowercomps &mdash; Premium Prize Competitions</p>
+      <p style="color: #9AA0AC; font-size: 12px; margin: 0;">Horse Power Competitions &mdash; Premium Prizes</p>
       <p style="color: #9AA0AC; font-size: 11px; margin: 8px 0 0 0;">You must be 18+ to enter. Please play responsibly.</p>
     </div>
   </div>
@@ -484,7 +484,7 @@ export async function sendSignupNotification({
   await resend.emails.send({
     from: FROM_EMAIL,
     to: customerEmail,
-    subject: `Welcome to Horsepowercomps!`,
+    subject: `Welcome to Horse Power Competitions!`,
     html: emailWrapper(`
       <div style="text-align: center; margin-bottom: 24px;">
         <div style="display: inline-block; background-color: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 50%; width: 56px; height: 56px; line-height: 56px; font-size: 24px;">🏆</div>
@@ -541,7 +541,7 @@ export async function sendCampaignEmailBatch(
       <div style="text-align: center; margin-bottom: 24px;">
         <div style="display: inline-block; background-color: rgba(217, 30, 54, 0.1); border: 1px solid rgba(217, 30, 54, 0.2); border-radius: 50%; width: 56px; height: 56px; line-height: 56px; font-size: 24px;">🔥</div>
         <h1 style="color: #F5F5F7; font-size: 22px; font-weight: 800; margin: 16px 0 4px 0;">Hi ${name.split(' ')[0]}, don&apos;t miss out!</h1>
-        <p style="color: #9AA0AC; font-size: 14px; margin: 0;">Here&apos;s what&apos;s hot on Horsepowercomps right now</p>
+        <p style="color: #9AA0AC; font-size: 14px; margin: 0;">Here&apos;s what&apos;s hot on Horse Power Competitions right now</p>
       </div>
       ${campaignCompetitionCard(popular, '🔥 Most Popular')}
       ${newest ? campaignCompetitionCard(newest, '🆕 Just Added') : ''}

@@ -57,7 +57,7 @@ export default function RegisterPage() {
             <div className="mx-auto w-fit"><Logo size="xl" /></div>
           </Link>
           <h1 className="text-2xl font-black text-foreground mb-2">Create Your Account</h1>
-          <p className="text-muted font-medium">Join Horsepowercomps and start winning today</p>
+          <p className="text-muted font-medium">Join Horse Power Competitions and start winning today</p>
         </div>
 
         <form onSubmit={handleSubmit} className="bg-card border border-border rounded-2xl p-6 sm:p-8 space-y-5">

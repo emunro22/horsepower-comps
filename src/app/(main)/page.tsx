@@ -2,12 +2,11 @@ import HeroSection from '@/components/HeroSection';
 import CompetitionsCarousel from '@/components/CompetitionsCarousel';
 import CompetitionGrid from '@/components/CompetitionGrid';
 import HowItWorksSection from '@/components/HowItWorksSection';
-import InstantWinsSection from '@/components/InstantWinsSection';
 import FadeIn from '@/components/FadeIn';
 import Link from 'next/link';
 
-// Keep the live competition count and instant win stats fresh without
-// forcing full dynamic rendering on every request.
+// Keep the live competition count fresh without forcing full dynamic
+// rendering on every request.
 export const revalidate = 60;
 
 export default function HomePage() {
@@ -70,8 +69,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      <InstantWinsSection />
 
       {/* Trust Bar */}
       <section className="py-5 bg-surface border-y border-border">

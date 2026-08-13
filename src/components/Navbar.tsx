@@ -8,8 +8,6 @@ import { CompetitionsDesktopMenu, CompetitionsMobileMenu } from './CompetitionsN
 import Logo from './Logo';
 import { socialLinks } from '@/lib/social';
 
-const navSocialLinks = socialLinks.filter((s) => s.href !== '#');
-
 const navLinks = [
   { href: '/how-it-works', label: 'How It Works' },
   { href: '/faq', label: 'FAQ' },
@@ -135,7 +133,7 @@ export default function Navbar() {
             <Logo size="md" />
             <div className="flex flex-col">
               <span className="text-xl lg:text-2xl font-extrabold tracking-tight text-foreground whitespace-nowrap uppercase">
-                Horsepower<span className="text-primary">Comps</span>
+                Horse Power <span className="text-primary">Competitions</span>
               </span>
               <span className="text-xs text-muted -mt-1 hidden xl:block tracking-widest uppercase font-medium whitespace-nowrap">
                 Premium Prize Competitions
@@ -158,7 +156,7 @@ export default function Navbar() {
 
           <div className="flex items-center gap-2">
             <div className="hidden lg:flex items-center gap-1 pr-2 mr-1 border-r border-border">
-              {navSocialLinks.map((social) => (
+              {socialLinks.map((social) => (
                 <a
                   key={social.label}
                   href={social.href}
@@ -265,7 +263,7 @@ export default function Navbar() {
               </div>
             )}
             <div className="flex items-center justify-center gap-3 pt-4 mt-4 border-t border-border">
-              {navSocialLinks.map((social) => (
+              {socialLinks.map((social) => (
                 <a
                   key={social.label}
                   href={social.href}

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Logo from './Logo';
 import { socialLinks } from '@/lib/social';
+import { FREE_ENTRY_ADDRESS } from '@/lib/free-entry';
 
 const footerLinks = {
   Competitions: [
@@ -42,11 +43,17 @@ export default function Footer() {
             <Link href="/" className="flex items-center gap-2.5 mb-4">
               <Logo size="lg" />
               <span className="text-xl font-extrabold text-foreground uppercase">
-                Horsepower<span className="text-primary">Comps</span>
+                Horse Power <span className="text-primary">Competitions</span>
               </span>
             </Link>
             <p className="text-sm text-muted max-w-xs mb-6">
               The UK&apos;s premier prize competition platform. Win incredible prizes from cars to cash, tech to holidays.
+            </p>
+            <p className="text-xs text-muted max-w-xs mb-6">
+              {FREE_ENTRY_ADDRESS} &middot;{' '}
+              <a href="mailto:decolow@icloud.com" className="hover:text-primary transition-colors">
+                decolow@icloud.com
+              </a>
             </p>
             <div className="flex gap-3">
               {socialLinks.map((social) => (
@@ -95,7 +102,7 @@ export default function Footer() {
               <span>Free postal entry available</span>
             </div>
             <p className="text-xs text-muted">
-              &copy; {new Date().getFullYear()} Horsepowercomps. All rights reserved.
+              &copy; {new Date().getFullYear()} Horse Power Competitions. All rights reserved.
             </p>
           </div>
         </div>

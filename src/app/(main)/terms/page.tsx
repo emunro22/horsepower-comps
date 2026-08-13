@@ -6,11 +6,17 @@ const sections: { title: string; body: React.ReactNode }[] = [
     title: '1. About Us',
     body: (
       <p>
-        Horsepowercomps (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;) is a UK-based
-        business operating prize competitions at horsepowercomps.co.uk (the
-        &quot;Site&quot;). These Terms &amp; Conditions govern every competition run on the Site.
-        By purchasing an entry, or by submitting a free postal entry, you agree to be bound by
-        these terms.
+        Horse Power Competitions (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;) is a
+        Glasgow-based business operating prize competitions at horsepowercomps.co.uk (the
+        &quot;Site&quot;). We trade as Horse Power Competitions from{' '}
+        <span className="font-bold text-foreground">{FREE_ENTRY_ADDRESS}</span>, and you can
+        contact us by email at decolow@icloud.com or via our{' '}
+        <Link href="/contact" className="text-primary hover:text-primary-light font-semibold">
+          Contact
+        </Link>{' '}
+        page. These Terms &amp; Conditions govern every competition run on the Site. By
+        purchasing an entry, or by submitting a free postal entry, you agree to be bound by these
+        terms.
       </p>
     ),
   },
@@ -18,8 +24,8 @@ const sections: { title: string; body: React.ReactNode }[] = [
     title: '2. Eligibility',
     body: (
       <p>
-        Entrants must be aged 18 or over and resident in the United Kingdom. Employees of Horsepowercomps
-        Competitions, their immediate families, and anyone professionally connected to the
+        Entrants must be aged 18 or over and resident in the United Kingdom. Employees of Horse
+        Power Competitions, their immediate families, and anyone professionally connected to the
         running of a competition are not eligible to enter that competition. We reserve the right
         to request proof of age and identity before releasing any prize.
       </p>
@@ -58,17 +64,21 @@ const sections: { title: string; body: React.ReactNode }[] = [
     ),
   },
   {
-    title: '5. No Refunds',
+    title: '5. Refunds',
     body: (
       <p>
-        <span className="font-bold text-foreground">
-          All ticket purchases are final and non-refundable.
-        </span>{' '}
-        Because every ticket is immediately allocated a unique number and entered into the draw,
-        we are unable to offer refunds, exchanges, or cancellations once an order has been
-        completed, except where required by law, or where a competition does not reach its
-        minimum ticket threshold within the 30-day extension window described in Section 6.
-        Please choose your ticket quantity carefully before completing checkout.
+        Once a ticket has been allocated a unique number and entered into the draw, we are
+        unable to offer refunds, exchanges, or cancellations, except: (a) where a competition
+        does not reach its minimum ticket threshold within the 30-day extension window described
+        in Section 6, in which case entrants for that competition may be refunded at our
+        discretion; (b) where we cancel a competition prior to its draw under Section 9; or (c)
+        where you are otherwise entitled to a refund under the Consumer Contracts (Information,
+        Cancellation and Additional Charges) Regulations 2013 or other applicable consumer law.
+        Entry into a prize competition is a service that begins as soon as your ticket is
+        allocated and entered into the draw, so by completing checkout you acknowledge that
+        performance begins immediately and that the standard 14-day cancellation right does not
+        apply once your ticket has been issued. Please choose your ticket quantity carefully
+        before completing checkout.
       </p>
     ),
   },
@@ -105,25 +115,22 @@ const sections: { title: string; body: React.ReactNode }[] = [
         either option and has 7 days from being notified to make their decision, after which the
         cash alternative will be paid automatically. Cash prizes are transferred by bank transfer
         within 48 hours of the draw or the winner&apos;s decision. Physical prizes are delivered
-        free of charge to a UK mainland address within 14 working days; holiday prizes are
-        booked in consultation with the winner, subject to availability.
+        free of charge to a UK mainland address within 14 working days. Holiday and experience
+        prizes (including travel, accommodation, and treatments arranged on the winner&apos;s
+        behalf) are booked in consultation with the winner, subject to availability, through
+        reputable, appropriately licensed and insured providers. Where a prize involves travel
+        outside the UK, or any medical, cosmetic, or other treatment carried out by a third-party
+        provider, our responsibility is limited to arranging and paying for that prize as
+        advertised; the provider&apos;s own terms and any applicable travel or medical insurance
+        govern the service itself, and winners are strongly advised to take out independent
+        travel insurance before travelling. A cash alternative equal to the advertised prize
+        value is available on request for any prize, including where a prize cannot reasonably
+        be provided as advertised.
       </p>
     ),
   },
   {
-    title: '9. Instant Win Prizes',
-    body: (
-      <p>
-        Some competitions include Instant Win prizes tied to specific, pre-determined ticket
-        numbers. An Instant Win is only confirmed and paid out once the ticket carrying that
-        number has been issued and the competition&apos;s ticket revenue has reached the
-        activation threshold shown for that prize. Instant Win prizes are paid or delivered using
-        the same timelines set out in Section 8.
-      </p>
-    ),
-  },
-  {
-    title: '10. Our Right to Amend or Cancel',
+    title: '9. Our Right to Amend or Cancel',
     body: (
       <p>
         We reserve the right to amend these terms, correct pricing or descriptive errors, or
@@ -134,17 +141,20 @@ const sections: { title: string; body: React.ReactNode }[] = [
     ),
   },
   {
-    title: '11. Limitation of Liability',
+    title: '10. Limitation of Liability',
     body: (
       <p>
-        Save for death or personal injury caused by our negligence, or any other liability which
-        cannot be excluded by law, our liability to you in connection with any competition is
-        limited to the value of tickets you purchased for that competition.
+        Save for death or personal injury caused by our negligence, fraud or fraudulent
+        misrepresentation, or any other liability which cannot be excluded or limited by law, our
+        liability to you in connection with any competition is limited to the greater of (a) the
+        advertised value of the prize for that competition, and (b) the total amount you paid for
+        tickets in that competition. We do not exclude or limit our liability for failing to
+        deliver, or pay the cash alternative for, a prize you have validly won.
       </p>
     ),
   },
   {
-    title: '12. Complaints',
+    title: '11. Complaints',
     body: (
       <p>
         If you have a complaint about the running of a competition, please contact us via our{' '}
@@ -156,11 +166,13 @@ const sections: { title: string; body: React.ReactNode }[] = [
     ),
   },
   {
-    title: '13. Governing Law',
+    title: '12. Governing Law',
     body: (
       <p>
-        These terms are governed by the laws of England and Wales, and the courts of England and
-        Wales shall have exclusive jurisdiction over any dispute arising from them.
+        We are based in Glasgow, and these terms are governed by the laws of Scotland. Any
+        dispute arising from them may be brought in the Scottish courts. As a consumer, you may
+        also bring proceedings in the courts of the part of the United Kingdom in which you live,
+        and nothing in this clause affects your statutory rights.
       </p>
     ),
   },

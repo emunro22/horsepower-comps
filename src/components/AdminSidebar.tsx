@@ -147,7 +147,7 @@ export default function AdminSidebar() {
               <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
                 <Logo size="sm" />
                 <span className="text-lg font-extrabold text-foreground uppercase">
-                  Horsepower<span className="text-primary">Comps</span>
+                  Horse Power <span className="text-primary">Competitions</span>
                 </span>
               </Link>
               <button
@@ -186,7 +186,7 @@ export default function AdminSidebar() {
           <Link href="/" className="flex items-center gap-2 mb-1">
             <Logo size="sm" />
             <span className="text-lg font-extrabold text-foreground uppercase">
-              Horsepower<span className="text-primary">Comps</span>
+              Horse Power <span className="text-primary">Competitions</span>
             </span>
           </Link>
           <p className="text-xs text-muted ml-10 font-semibold">Admin Portal</p>

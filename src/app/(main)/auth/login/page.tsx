@@ -40,7 +40,7 @@ export default function LoginPage() {
             <div className="mx-auto w-fit"><Logo size="xl" /></div>
           </Link>
           <h1 className="text-2xl font-black text-foreground mb-2">Welcome Back</h1>
-          <p className="text-muted font-medium">Log in to your Horsepowercomps account</p>
+          <p className="text-muted font-medium">Log in to your Horse Power Competitions account</p>
         </div>
 
         <form onSubmit={handleSubmit} className="bg-card border border-border rounded-2xl p-6 sm:p-8 space-y-5">
