@@ -53,13 +53,6 @@ export function CompetitionsDesktopMenu() {
             >
               All Competitions
             </Link>
-            <Link
-              href="/#instawin-games"
-              onClick={() => setOpen(false)}
-              className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-white/5 transition-colors"
-            >
-              ⚡ InstaWin
-            </Link>
             {categories.length > 0 && <div className="border-t border-border my-1" />}
             {categories.map((cat) => (
               <Link
@@ -107,13 +100,6 @@ export function CompetitionsMobileMenu({ onNavigate }: { onNavigate: () => void 
             className="block px-4 py-2.5 text-sm font-medium text-muted hover:text-foreground hover:bg-white/5 rounded-lg transition-colors"
           >
             All Competitions
-          </Link>
-          <Link
-            href="/#instawin-games"
-            onClick={onNavigate}
-            className="block px-4 py-2.5 text-sm font-medium text-muted hover:text-foreground hover:bg-white/5 rounded-lg transition-colors"
-          >
-            ⚡ InstaWin
           </Link>
           {categories.map((cat) => (
             <Link

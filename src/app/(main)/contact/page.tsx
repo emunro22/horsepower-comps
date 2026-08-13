@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { FREE_ENTRY_ADDRESS_LINES, FREE_ENTRY_INSTRUCTIONS } from '@/lib/free-entry';
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -41,9 +42,9 @@ export default function ContactPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               ),
-              title: 'Based In',
-              value: 'United Kingdom',
-              sub: 'UK based business',
+              title: 'Free Postal Entry Address',
+              value: FREE_ENTRY_ADDRESS_LINES.join(', '),
+              sub: 'For free competition entries by post',
             },
             {
               icon: (
@@ -68,19 +69,9 @@ export default function ContactPage() {
             </div>
           ))}
 
-          <div className="bg-card border border-border rounded-xl p-5">
-            <h3 className="font-bold text-foreground mb-3">Follow Us</h3>
-            <div className="flex gap-3">
-              {['Facebook', 'Instagram', 'TikTok', 'YouTube'].map((s) => (
-                <a
-                  key={s}
-                  href="#"
-                  className="w-10 h-10 bg-background rounded-lg border border-border flex items-center justify-center text-muted hover:text-primary hover:border-primary/50 transition-colors"
-                >
-                  <span className="text-xs font-bold">{s[0]}</span>
-                </a>
-              ))}
-            </div>
+          <div className="bg-primary/5 border border-primary/20 rounded-xl p-5">
+            <h3 className="font-bold text-foreground mb-2">Free Postal Entry</h3>
+            <p className="text-sm text-muted font-medium leading-relaxed">{FREE_ENTRY_INSTRUCTIONS}</p>
           </div>
         </div>
 

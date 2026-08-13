@@ -3,8 +3,6 @@ import CompetitionsCarousel from '@/components/CompetitionsCarousel';
 import CompetitionGrid from '@/components/CompetitionGrid';
 import HowItWorksSection from '@/components/HowItWorksSection';
 import InstantWinsSection from '@/components/InstantWinsSection';
-import WheelGamesSection from '@/components/WheelGamesSection';
-import TikTokFeed from '@/components/TikTokFeed';
 import FadeIn from '@/components/FadeIn';
 import Link from 'next/link';
 
@@ -74,7 +72,6 @@ export default function HomePage() {
       </section>
 
       <InstantWinsSection />
-      <WheelGamesSection />
 
       {/* Trust Bar */}
       <section className="py-5 bg-surface border-y border-border">
@@ -118,7 +115,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <TikTokFeed />
       <HowItWorksSection />
 
       {/* Threshold Info Banner */}

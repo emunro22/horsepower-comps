@@ -8,6 +8,7 @@ import { useCompetition } from '@/lib/store';
 import CountdownTimer from '@/components/CountdownTimer';
 import ProgressBar from '@/components/ProgressBar';
 import TicketSelector from '@/components/TicketSelector';
+import { FREE_ENTRY_ADDRESS_LINES, FREE_ENTRY_INSTRUCTIONS } from '@/lib/free-entry';
 
 export default function CompetitionDetailPage({
   params,
@@ -197,6 +198,26 @@ export default function CompetitionDetailPage({
               maxPerPerson={competition.maxPerPerson}
               remainingTickets={remaining}
             />
+
+            {/* Free Postal Entry Route */}
+            <div className="mt-4 bg-card border border-border rounded-2xl p-5">
+              <div className="flex items-start gap-3">
+                <div className="text-xl mt-0.5">✉️</div>
+                <div>
+                  <h3 className="font-bold text-foreground text-sm mb-1">Prefer to enter for free?</h3>
+                  <p className="text-xs text-muted font-medium leading-relaxed mb-2">
+                    {FREE_ENTRY_INSTRUCTIONS} Entries must arrive by{' '}
+                    <span className="text-foreground font-bold">
+                      {new Date(competition.drawDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    </span>{' '}
+                    to be entered into this competition.
+                  </p>
+                  <p className="text-xs text-foreground font-bold">
+                    {FREE_ENTRY_ADDRESS_LINES.join(', ')}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,12 +1,13 @@
 import Link from 'next/link';
+import { FREE_ENTRY_ADDRESS } from '@/lib/free-entry';
 
 const sections: { title: string; body: React.ReactNode }[] = [
   {
     title: '1. About Us',
     body: (
       <p>
-        Horsepowercomps (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;) is a UK-registered
-        company operating prize competitions at horsepowercomps.co.uk (the
+        Horsepowercomps (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;) is a UK-based
+        business operating prize competitions at horsepowercomps.co.uk (the
         &quot;Site&quot;). These Terms &amp; Conditions govern every competition run on the Site.
         By purchasing an entry, or by submitting a free postal entry, you agree to be bound by
         these terms.
@@ -33,12 +34,17 @@ const sections: { title: string; body: React.ReactNode }[] = [
         stated on the competition page. In accordance with UK law on prize competitions, a free
         postal entry route is also available for every competition &mdash; write your name,
         address, email, date of birth, and the name of the competition you wish to enter on a
-        postcard, and post it to the address shown on our{' '}
+        postcard, and post it to:
+        <br />
+        <span className="font-bold text-foreground">{FREE_ENTRY_ADDRESS}</span>
+        <br />
+        One postal entry per envelope. Postal entries must arrive by the competition&apos;s draw
+        date shown on its page, receive one ticket, are entered into the same draw as paid
+        tickets, and carry no lesser chance of winning. See our{' '}
         <Link href="/contact" className="text-primary hover:text-primary-light font-semibold">
           Contact
         </Link>{' '}
-        page. One postal entry per envelope. Postal entries receive one ticket, entered into the
-        same draw as paid tickets, and carry no lesser chance of winning.
+        page for full details.
       </p>
     ),
   },

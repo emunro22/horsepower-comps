@@ -10,8 +10,6 @@ const GENERIC_MESSAGES = [
   '100% Verified Draws — real winners every week',
 ];
 
-const INSTAWIN_MESSAGE = '🎰 Check out our InstaWin section too — instant prizes, no waiting!';
-
 async function getLiveCompetitionMessages() {
   try {
     const rows = await db
@@ -34,7 +32,6 @@ export default async function AnnouncementBanner() {
   const messages = [
     GENERIC_MESSAGES[0],
     ...competitionMessages,
-    INSTAWIN_MESSAGE,
     ...GENERIC_MESSAGES.slice(1),
   ];
 

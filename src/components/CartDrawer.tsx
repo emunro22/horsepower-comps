@@ -324,6 +324,13 @@ export default function CartDrawer() {
             <p className="text-xs text-muted text-center font-medium">
               We&apos;re currently only accepting payment by bank transfer. You must be 18+ to enter.
             </p>
+            <p className="text-xs text-muted text-center font-medium">
+              Prefer not to pay?{' '}
+              <Link href="/contact" className="text-primary hover:text-primary-light font-semibold">
+                Enter for free by post
+              </Link>
+              , same odds, same draw.
+            </p>
           </div>
         )}
       </div>
