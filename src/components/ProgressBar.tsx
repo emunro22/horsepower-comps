@@ -7,17 +7,15 @@ interface ProgressBarProps {
   sold: number;
   total: number;
   showLabel?: boolean;
-  threshold?: number;
 }
 
-export default function ProgressBar({ sold, total, showLabel = true, threshold }: ProgressBarProps) {
+export default function ProgressBar({ sold, total, showLabel = true }: ProgressBarProps) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
   const percent = percentSold(sold, total);
   const isHot = percent >= 80;
   const isWarm = percent >= 50;
-  const thresholdMet = threshold ? percent >= threshold : true;
 
   return (
     <div className="w-full">
@@ -42,22 +40,10 @@ export default function ProgressBar({ sold, total, showLabel = true, threshold }
           }`}
           style={{ width: mounted ? `${percent}%` : '0%' }}
         />
-        {threshold && (
-          <div
-            className="absolute top-0 bottom-0 w-0.5 bg-primary/60"
-            style={{ left: `${threshold}%` }}
-            title={`${threshold}% threshold required`}
-          />
-        )}
       </div>
       {isHot && (
         <p className="text-[10px] text-danger font-bold mt-1 pulse-live">
           Selling fast, only {total - sold} tickets remaining!
-        </p>
-      )}
-      {threshold && !thresholdMet && (
-        <p className="text-[10px] text-primary font-semibold mt-1">
-          {threshold}% must sell, auto-extends if not met
         </p>
       )}
     </div>

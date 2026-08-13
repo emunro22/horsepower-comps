@@ -210,7 +210,7 @@ export const competitions: Competition[] = [
 export const faqs = [
   {
     question: 'How does Horse Power Competitions work?',
-    answer: 'Horse Power Competitions runs prize competitions where you purchase tickets for a chance to win incredible prizes. Each competition has a set number of tickets and a draw date. Once the minimum ticket threshold is met and the draw date arrives, we randomly select a winner using a verified random number generator. It\'s that simple!',
+    answer: 'Horse Power Competitions runs prize competitions where you purchase tickets for a chance to win incredible prizes. Each competition has a set number of tickets and a draw date. When the draw date arrives, we randomly select a winner using a verified random number generator, whatever the ticket sales. It\'s that simple!',
   },
   {
     question: 'Is Horse Power Competitions legitimate?',
@@ -237,8 +237,8 @@ export const faqs = [
     answer: 'Each competition has a maximum ticket limit per person, which is displayed on the competition page. This ensures fairness and gives everyone a great chance of winning.',
   },
   {
-    question: 'What happens if the minimum ticket threshold isn\'t met?',
-    answer: 'Each competition has a minimum sold percentage (typically 85%). If this threshold is not met by the draw date, the competition is automatically extended, up to a maximum of 30 days past the original draw date. If the threshold still isn\'t met at that point, we\'ll either draw a winner from the tickets sold, or refund entrants for that competition. The threshold and countdown are clearly displayed on each competition page.',
+    question: 'Is the draw guaranteed to happen?',
+    answer: 'Yes. Every competition draws on its advertised date, however many tickets have sold by then. We never cancel, downgrade, or postpone a competition for low sales — the advertised prize, or its cash alternative, is always awarded to the winning ticket.',
   },
   {
     question: 'Can I choose the cash alternative instead of the prize?',

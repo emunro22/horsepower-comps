@@ -69,7 +69,6 @@ export default function EditCompetitionPage({
   const [totalTickets, setTotalTickets] = useState('');
   const [maxPerPerson, setMaxPerPerson] = useState('');
   const [drawDate, setDrawDate] = useState('');
-  const [threshold, setThreshold] = useState(85);
   const [featured, setFeatured] = useState(false);
   const [instaWin, setInstaWin] = useState(false);
   const [instaWinDisplayMode, setInstaWinDisplayMode] = useState<'countdown' | 'prize_count' | 'jackpot'>('countdown');
@@ -98,7 +97,6 @@ export default function EditCompetitionPage({
           setTicketPrice((found.ticketPrice / 100).toFixed(2));
           setTotalTickets(found.totalTickets.toString());
           setMaxPerPerson(found.maxPerPerson.toString());
-          setThreshold(found.minimumSoldPercentage);
           setFeatured(found.featured);
           setInstaWin(found.instaWin);
           setInstaWinDisplayMode(found.instaWinDisplayMode || 'countdown');
@@ -232,7 +230,6 @@ export default function EditCompetitionPage({
           totalTickets: parseInt(totalTickets),
           maxPerPerson: parseInt(maxPerPerson),
           drawDate: new Date(drawDate).toISOString(),
-          minimumSoldPercentage: threshold,
           featured,
           instaWin,
           instaWinDisplayMode,
@@ -494,24 +491,6 @@ export default function EditCompetitionPage({
               <input type="datetime-local" required value={drawDate} onChange={(e) => setDrawDate(e.target.value)} className="w-full h-12 bg-background border border-border rounded-xl px-4 text-foreground focus:outline-none focus:border-primary transition-colors" />
             </div>
 
-            <div>
-              <label className="block text-sm font-semibold text-foreground mb-1.5">
-                Minimum Sold Threshold: <span className="text-primary">{threshold}%</span>
-              </label>
-              <input
-                type="range"
-                min={50}
-                max={100}
-                value={threshold}
-                onChange={(e) => setThreshold(parseInt(e.target.value))}
-                className="w-full h-2 bg-background rounded-full appearance-none cursor-pointer accent-primary"
-              />
-              <div className="flex justify-between text-xs text-muted mt-1 font-medium">
-                <span>50%</span>
-                <span>75%</span>
-                <span>100%</span>
-              </div>
-            </div>
 
             <div className="flex items-center gap-3">
               <input type="checkbox" id="featured" checked={featured} onChange={(e) => setFeatured(e.target.checked)} className="w-4 h-4 rounded border-border bg-background text-primary focus:ring-primary" />

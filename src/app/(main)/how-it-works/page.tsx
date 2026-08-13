@@ -7,7 +7,7 @@ const steps = [
   { number: '02', title: 'Browse Competitions', description: 'Explore our range of incredible prizes, from dream cars and luxury holidays to cash prizes and the latest tech. Filter by category, price, or ending soonest.', icon: '🔍' },
   { number: '03', title: 'Choose Your Tickets, or Enter Free', description: `Select how many tickets you want, each ticket is one entry into the draw. Prefer not to pay? Every competition also has a free postal entry route with an equal chance of winning: ${FREE_ENTRY_INSTRUCTIONS} Post to: ${FREE_ENTRY_ADDRESS}.`, icon: '🎫' },
   { number: '04', title: 'Secure Checkout', description: 'Complete your order securely at checkout. Your payment and personal details are handled with care and never stored insecurely on our servers.', icon: '🔒' },
-  { number: '05', title: 'Winner is Drawn', description: 'Once the ticket threshold is met, a winner is selected using a cryptographically secure random number generator. The winning ticket number is published for full transparency.', icon: '🎲' },
+  { number: '05', title: 'Winner is Drawn', description: 'On the advertised draw date, a winner is selected using a cryptographically secure random number generator. Every competition draws on schedule, however many tickets have sold.', icon: '🎲' },
   { number: '06', title: 'Claim Your Prize!', description: 'Winners are contacted directly by our team. Cash prizes are transferred within 48 hours. Physical prizes are delivered to your door within 14 working days. Where a cash alternative is offered, you choose!', icon: '🏆' },
 ];
 
@@ -66,14 +66,13 @@ export default function HowItWorksPage() {
         ))}
       </div>
 
-      {/* Threshold Explanation */}
+      {/* Draw Guarantee Explanation */}
       <FadeIn className="bg-primary/5 border border-primary/20 rounded-2xl p-8 mb-16 text-center">
         <div className="text-3xl mb-3">🛡️</div>
         <h2 className="text-xl font-black text-foreground mb-3">Draw Guarantee</h2>
         <p className="text-sm text-muted max-w-lg mx-auto font-medium leading-relaxed">
-          Every competition has a minimum ticket threshold (typically 85%). If the threshold isn&apos;t met by the draw date,
-          the competition is automatically extended, up to a maximum of 30 days, giving it the best chance of reaching its goal.
-          The threshold and countdown are clearly displayed on each competition page so you always know where things stand.
+          Every competition draws on its advertised date, no matter how many tickets have sold. The prize is always
+          awarded, or the cash alternative paid, as scheduled &mdash; we never cancel or downgrade a competition for low sales.
         </p>
       </FadeIn>
 

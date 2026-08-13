@@ -63,7 +63,6 @@ export default function CompetitionCard({ competition, index = 0 }: CompetitionC
             <ProgressBar
               sold={competition.ticketsSold}
               total={competition.totalTickets}
-              threshold={competition.minimumSoldPercentage}
             />
 
             <div className="pt-1 space-y-2">

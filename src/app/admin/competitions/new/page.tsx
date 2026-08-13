@@ -32,7 +32,6 @@ export default function NewCompetitionPage() {
   const [totalTickets, setTotalTickets] = useState('');
   const [maxPerPerson, setMaxPerPerson] = useState('100');
   const [drawDate, setDrawDate] = useState('');
-  const [threshold, setThreshold] = useState(85);
   const [featured, setFeatured] = useState(false);
   const [instaWin, setInstaWin] = useState(false);
   const [instaWinDisplayMode, setInstaWinDisplayMode] = useState<'countdown' | 'prize_count' | 'jackpot'>('countdown');
@@ -105,7 +104,6 @@ export default function NewCompetitionPage() {
           totalTickets: parseInt(totalTickets),
           maxPerPerson: parseInt(maxPerPerson),
           drawDate: new Date(drawDate).toISOString(),
-          minimumSoldPercentage: threshold,
           featured,
           instaWin,
           instaWinDisplayMode,
@@ -315,28 +313,6 @@ export default function NewCompetitionPage() {
             <div>
               <label className="block text-sm font-semibold text-foreground mb-1.5">Draw Date & Time</label>
               <input type="datetime-local" required value={drawDate} onChange={(e) => setDrawDate(e.target.value)} className="w-full h-12 bg-background border border-border rounded-xl px-4 text-foreground focus:outline-none focus:border-primary transition-colors" />
-            </div>
-
-            <div>
-              <label className="block text-sm font-semibold text-foreground mb-1.5">
-                Minimum Sold Threshold: <span className="text-primary">{threshold}%</span>
-              </label>
-              <p className="text-xs text-muted mb-3 font-medium">
-                The competition won&apos;t go ahead unless this percentage of tickets are sold.
-              </p>
-              <input
-                type="range"
-                min={50}
-                max={100}
-                value={threshold}
-                onChange={(e) => setThreshold(parseInt(e.target.value))}
-                className="w-full h-2 bg-background rounded-full appearance-none cursor-pointer accent-primary"
-              />
-              <div className="flex justify-between text-xs text-muted mt-1 font-medium">
-                <span>50%</span>
-                <span>75%</span>
-                <span>100%</span>
-              </div>
             </div>
 
             <div className="flex items-center gap-3">

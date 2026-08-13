@@ -68,12 +68,10 @@ const sections: { title: string; body: React.ReactNode }[] = [
     body: (
       <p>
         Once a ticket has been allocated a unique number and entered into the draw, we are
-        unable to offer refunds, exchanges, or cancellations, except: (a) where a competition
-        does not reach its minimum ticket threshold within the 30-day extension window described
-        in Section 6, in which case entrants for that competition may be refunded at our
-        discretion; (b) where we cancel a competition prior to its draw under Section 9; or (c)
-        where you are otherwise entitled to a refund under the Consumer Contracts (Information,
-        Cancellation and Additional Charges) Regulations 2013 or other applicable consumer law.
+        unable to offer refunds, exchanges, or cancellations, except: (a) where we cancel a
+        competition prior to its draw under Section 9; or (b) where you are otherwise entitled
+        to a refund under the Consumer Contracts (Information, Cancellation and Additional
+        Charges) Regulations 2013 or other applicable consumer law.
         Entry into a prize competition is a service that begins as soon as your ticket is
         allocated and entered into the draw, so by completing checkout you acknowledge that
         performance begins immediately and that the standard 14-day cancellation right does not
@@ -83,15 +81,14 @@ const sections: { title: string; body: React.ReactNode }[] = [
     ),
   },
   {
-    title: '6. Minimum Ticket Threshold &amp; Draw Guarantee',
+    title: '6. Draw Guarantee',
     body: (
       <p>
-        Every competition has a minimum ticket sales threshold, shown as a percentage on the
-        competition page (typically 85%). If that threshold has not been reached by the
-        advertised draw date, the competition will automatically continue and remain open for
-        ticket sales, for a maximum of 30 days past the original draw date. If the threshold
-        still hasn&apos;t been reached at that point, we will either draw a winner from the
-        tickets actually sold, or refund entrants for that competition, at our discretion.
+        Every competition draws on the advertised draw date shown on its competition page,
+        whatever the number of tickets sold by that date. We do not cancel, downgrade, or
+        postpone a competition, and do not extend the draw date, because of low ticket sales.
+        The advertised prize, or its cash alternative, is always awarded to the winning ticket
+        selected on that date.
       </p>
     ),
   },
@@ -99,8 +96,8 @@ const sections: { title: string; body: React.ReactNode }[] = [
     title: '7. The Draw &amp; Winner Selection',
     body: (
       <p>
-        Once a competition&apos;s threshold has been met and its draw date has passed, the
-        winning ticket is selected using a cryptographically secure random number generator, so
+        Once a competition&apos;s draw date has passed, the winning ticket is selected using a
+        cryptographically secure random number generator, so
         that every issued ticket (whether purchased or received via free postal entry) has an
         equal chance of winning. Winners are notified by email and/or phone using the details
         provided at entry, and are also announced on the Site and our social media channels.
@@ -193,11 +190,10 @@ export default function TermsPage() {
       <div className="animate-fade-in-up bg-primary/5 border border-primary/20 rounded-2xl p-6 mb-8 flex items-start gap-3">
         <div className="text-xl mt-0.5">🛡️</div>
         <p className="text-sm text-foreground font-medium leading-relaxed">
-          In short: if a competition doesn&apos;t reach its minimum ticket threshold by the draw
-          date, it&apos;s <span className="font-bold">automatically extended, up to a maximum of
-          30 days</span> &mdash; never cancelled outright. If the threshold still isn&apos;t met
-          after that, we&apos;ll either <span className="font-bold">draw a winner from the
-          tickets sold, or refund entrants</span> for that competition.
+          In short: every competition <span className="font-bold">draws on its advertised date,
+          whatever the ticket sales</span> &mdash; we never cancel, downgrade, or extend a
+          competition because it hasn&apos;t sold enough tickets. The advertised prize, or its
+          cash alternative, is always awarded.
         </p>
       </div>
 

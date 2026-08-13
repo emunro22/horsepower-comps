@@ -24,7 +24,7 @@ const steps = [
   {
     number: '03',
     title: 'Wait for the Draw',
-    description: 'Once the ticket threshold is met, a winner is selected using a verified random number generator.',
+    description: 'Every competition draws on its advertised date, whatever the ticket sales. A winner is selected using a verified random number generator.',
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />

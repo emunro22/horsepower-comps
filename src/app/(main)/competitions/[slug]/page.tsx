@@ -3,7 +3,7 @@
 import { use, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { formatPrice, formatPriceShort, percentSold, isVideoUrl } from '@/lib/utils';
+import { formatPrice, formatPriceShort, isVideoUrl } from '@/lib/utils';
 import { useCompetition } from '@/lib/store';
 import CountdownTimer from '@/components/CountdownTimer';
 import ProgressBar from '@/components/ProgressBar';
@@ -36,8 +36,6 @@ export default function CompetitionDetailPage({
 
   const images = competition.images && competition.images.length > 0 ? competition.images : [competition.imageUrl];
   const remaining = competition.totalTickets - competition.ticketsSold;
-  const soldPct = percentSold(competition.ticketsSold, competition.totalTickets);
-  const thresholdMet = soldPct >= competition.minimumSoldPercentage;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-14">
@@ -131,19 +129,15 @@ export default function CompetitionDetailPage({
             </p>
           </div>
 
-          {/* Threshold Notice */}
-          <div className={`border rounded-2xl p-5 ${thresholdMet ? 'bg-success/5 border-success/20' : 'bg-primary/5 border-primary/20'}`}>
+          {/* Draw Guarantee Notice */}
+          <div className="border rounded-2xl p-5 bg-success/5 border-success/20">
             <div className="flex items-start gap-3">
-              <div className="text-xl mt-0.5">{thresholdMet ? '✅' : '🛡️'}</div>
+              <div className="text-xl mt-0.5">🛡️</div>
               <div>
-                <h3 className="font-bold text-foreground text-sm mb-1">
-                  {thresholdMet ? 'Draw Threshold Met!' : `${competition.minimumSoldPercentage}% Minimum Threshold`}
-                </h3>
+                <h3 className="font-bold text-foreground text-sm mb-1">Draw Guaranteed</h3>
                 <p className="text-xs text-muted font-medium leading-relaxed">
-                  {thresholdMet
-                    ? `This competition has passed the ${competition.minimumSoldPercentage}% minimum threshold. The draw will proceed as scheduled.`
-                    : `This competition requires ${competition.minimumSoldPercentage}% of tickets to be sold for the draw to go ahead. If the threshold is not met by the draw date, the competition will be automatically extended, up to a maximum of 30 days.`
-                  }
+                  This competition will draw on its advertised date, whatever the ticket sales. The prize is always
+                  awarded, or the cash alternative paid, as scheduled.
                 </p>
               </div>
             </div>
@@ -157,7 +151,6 @@ export default function CompetitionDetailPage({
                 { label: 'Total Tickets', value: competition.totalTickets.toLocaleString() },
                 { label: 'Tickets Remaining', value: remaining.toLocaleString() },
                 { label: 'Max Per Person', value: competition.maxPerPerson.toString() },
-                { label: 'Draw Threshold', value: `${competition.minimumSoldPercentage}%` },
                 { label: 'Draw Date', value: new Date(competition.drawDate).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) },
               ].map((item) => (
                 <div key={item.label} className="flex items-center justify-between py-2 border-b border-border/50 last:border-0">
@@ -186,7 +179,6 @@ export default function CompetitionDetailPage({
               <ProgressBar
                 sold={competition.ticketsSold}
                 total={competition.totalTickets}
-                threshold={competition.minimumSoldPercentage}
               />
             </div>
 

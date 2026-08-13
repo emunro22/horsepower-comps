@@ -26,7 +26,6 @@ interface UpcomingDraw {
   date: string;
   sold: string;
   percent: number;
-  threshold: number;
 }
 
 export default function AdminDashboard() {
@@ -155,14 +154,9 @@ export default function AdminDashboard() {
                   </p>
                   <div className="flex items-center justify-between mb-1.5">
                     <span className="text-xs text-muted font-medium">{draw.sold} sold</span>
-                    <div className="flex items-center gap-2">
-                      {draw.percent >= draw.threshold && (
-                        <span className="text-[10px] text-success font-bold">Threshold met</span>
-                      )}
-                      <span className={`text-xs font-black ${draw.percent >= 80 ? 'text-danger' : draw.percent >= 50 ? 'text-primary' : 'text-success'}`}>
-                        {draw.percent}%
-                      </span>
-                    </div>
+                    <span className={`text-xs font-black ${draw.percent >= 80 ? 'text-danger' : draw.percent >= 50 ? 'text-primary' : 'text-success'}`}>
+                      {draw.percent}%
+                    </span>
                   </div>
                   <div className="relative w-full h-2 bg-background rounded-full overflow-hidden">
                     <div
@@ -174,10 +168,6 @@ export default function AdminDashboard() {
                           : 'bg-gradient-to-r from-accent to-success'
                       }`}
                       style={{ width: `${draw.percent}%` }}
-                    />
-                    <div
-                      className="absolute top-0 bottom-0 w-0.5 bg-primary/60"
-                      style={{ left: `${draw.threshold}%` }}
                     />
                   </div>
                 </div>

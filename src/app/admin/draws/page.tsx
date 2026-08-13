@@ -11,15 +11,6 @@ interface Competition {
   drawDate: string;
   originalDrawDate: string | null;
   status: string;
-  minimumSoldPercentage: number;
-}
-
-const MAX_EXTENSION_DAYS = 30;
-
-function isExtensionCapped(comp: Competition): boolean {
-  const baseDate = new Date(comp.originalDrawDate ?? comp.drawDate);
-  const capDate = new Date(baseDate.getTime() + MAX_EXTENSION_DAYS * 24 * 60 * 60 * 1000);
-  return new Date() >= capDate;
 }
 
 interface DrawResult {
@@ -131,9 +122,6 @@ export default function AdminDrawsPage() {
             {selectedComp && (() => {
               const comp = competitions.find((c) => c.id === selectedComp);
               if (!comp) return null;
-              const pct = percentSold(comp.ticketsSold, comp.totalTickets);
-              const thresholdMet = pct >= comp.minimumSoldPercentage;
-              const capped = !thresholdMet && isExtensionCapped(comp);
               return (
                 <div className="bg-background rounded-xl p-4 mb-5 space-y-2">
                   <div className="flex justify-between text-sm">
@@ -145,31 +133,11 @@ export default function AdminDrawsPage() {
                     <span className="text-foreground font-bold">{comp.totalTickets.toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-muted font-medium">Threshold</span>
-                    <span className={`font-bold ${thresholdMet ? 'text-success' : 'text-primary'}`}>
-                      {comp.minimumSoldPercentage}%{thresholdMet ? ' ✓ Met' : ', Not met'}
-                    </span>
-                  </div>
-                  <div className="flex justify-between text-sm">
                     <span className="text-muted font-medium">Draw Date</span>
                     <span className="text-foreground font-bold">
                       {new Date(comp.drawDate).toLocaleDateString('en-GB')}
                     </span>
                   </div>
-                  {!thresholdMet && capped && (
-                    <div className="mt-2 bg-danger/10 border border-danger/20 rounded-lg p-3">
-                      <p className="text-xs text-danger font-bold">
-                        30-day extension limit reached at {pct}% sold. You can now force a draw on tickets actually sold, or refund customers instead — outside this system for now.
-                      </p>
-                    </div>
-                  )}
-                  {!thresholdMet && !capped && (
-                    <div className="mt-2 bg-primary/10 border border-primary/20 rounded-lg p-3">
-                      <p className="text-xs text-primary font-bold">
-                        Draw blocked, {comp.minimumSoldPercentage}% threshold not reached ({pct}% sold)
-                      </p>
-                    </div>
-                  )}
                 </div>
               );
             })()}
@@ -237,7 +205,6 @@ export default function AdminDrawsPage() {
                 .sort((a, b) => new Date(a.drawDate).getTime() - new Date(b.drawDate).getTime())
                 .map((comp) => {
                   const pct = percentSold(comp.ticketsSold, comp.totalTickets);
-                  const thresholdMet = pct >= comp.minimumSoldPercentage;
                   return (
                     <div key={comp.id} className="bg-card border border-border rounded-xl p-4">
                       <div className="flex items-start justify-between gap-4 mb-3">
@@ -253,16 +220,11 @@ export default function AdminDrawsPage() {
                             })}
                           </p>
                         </div>
-                        <div className="flex items-center gap-1.5">
-                          {thresholdMet && (
-                            <span className="text-[10px] text-success font-bold">✓</span>
-                          )}
-                          <span className={`text-xs font-black px-2 py-0.5 rounded-lg shrink-0 ${
-                            pct >= 80 ? 'bg-danger/10 text-danger' : pct >= 50 ? 'bg-primary/10 text-primary' : 'bg-success/10 text-success'
-                          }`}>
-                            {pct}%
-                          </span>
-                        </div>
+                        <span className={`text-xs font-black px-2 py-0.5 rounded-lg shrink-0 ${
+                          pct >= 80 ? 'bg-danger/10 text-danger' : pct >= 50 ? 'bg-primary/10 text-primary' : 'bg-success/10 text-success'
+                        }`}>
+                          {pct}%
+                        </span>
                       </div>
                       <div className="relative w-full h-1.5 bg-background rounded-full overflow-hidden">
                         <div
@@ -271,14 +233,9 @@ export default function AdminDrawsPage() {
                           }`}
                           style={{ width: `${pct}%` }}
                         />
-                        <div
-                          className="absolute top-0 bottom-0 w-0.5 bg-primary/60"
-                          style={{ left: `${comp.minimumSoldPercentage}%` }}
-                        />
                       </div>
                       <p className="text-xs text-muted mt-2 font-medium">
                         {comp.ticketsSold.toLocaleString()} / {comp.totalTickets.toLocaleString()} tickets sold
-                        <span className="text-muted/60"> · {comp.minimumSoldPercentage}% threshold</span>
                       </p>
                     </div>
                   );

@@ -28,21 +28,8 @@ export async function POST(request: Request) {
       return Response.json({ error: 'Competition is not live' }, { status: 400 });
     }
 
-    const pct = Math.round((comp.ticketsSold / comp.totalTickets) * 100);
-    if (pct < comp.minimumSoldPercentage) {
-      const baseDate = comp.originalDrawDate ?? comp.drawDate;
-      const capDate = new Date(baseDate.getTime() + 30 * 24 * 60 * 60 * 1000);
-      const isCapped = new Date() >= capDate;
-
-      if (!isCapped) {
-        return Response.json(
-          { error: `Threshold not met, ${pct}% sold, needs ${comp.minimumSoldPercentage}%` },
-          { status: 400 }
-        );
-      }
-      // Past the 30-day auto-extension cap — an admin can force the draw on
-      // tickets actually sold rather than holding customer money forever.
-    }
+    // No minimum-sold gate: every competition draws on its advertised date
+    // regardless of tickets sold - see the Terms' Draw Guarantee.
 
     // Pick a winning ticket using a cryptographically secure random index
     // (Node's crypto.randomInt, a CSPRNG) rather than Postgres's random(),
