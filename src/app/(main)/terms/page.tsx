@@ -44,9 +44,9 @@ const sections: { title: string; body: React.ReactNode }[] = [
         <br />
         <span className="font-bold text-foreground">{FREE_ENTRY_ADDRESS}</span>
         <br />
-        One postal entry per envelope. Postal entries must arrive by the competition&apos;s draw
-        date shown on its page, receive one ticket, are entered into the same draw as paid
-        tickets, and carry no lesser chance of winning. See our{' '}
+        One postal entry per envelope. Postal entries are accepted at any time up until the
+        competition sells out (see Section 6), receive one ticket, are entered into the same draw
+        as paid tickets, and carry no lesser chance of winning. See our{' '}
         <Link href="/contact" className="text-primary hover:text-primary-light font-semibold">
           Contact
         </Link>{' '}
@@ -91,8 +91,9 @@ const sections: { title: string; body: React.ReactNode }[] = [
         for a further 30 days. If it still has not sold out by then, it is automatically extended
         for another 30 days, and this repeats for as long as it takes to sell out &mdash; this
         extension is automatic and is never left to our discretion. Once a competition sells out,
-        our team runs the draw, often live on our social media channels. A sold-out competition
-        is never cancelled and never replaced with a refund in place of a draw.
+        our team runs the draw, often live on our social media channels. Except as set out in
+        Section 9, a competition is never cancelled and never replaced with a refund in place of
+        a draw.
       </p>
     ),
   },

@@ -5,18 +5,8 @@ import type { MouseEvent, PointerEvent } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useCompetitions, useStore } from '@/lib/store';
-import { formatPrice, formatPriceShort, percentSold, getTimeRemaining } from '@/lib/utils';
-import CountdownTimer from './CountdownTimer';
+import { formatPrice, formatPriceShort, percentSold } from '@/lib/utils';
 import type { Competition } from '@/lib/mock-data';
-
-function useCountdown(endDate: string) {
-  const [time, setTime] = useState(() => getTimeRemaining(endDate));
-  useEffect(() => {
-    const id = setInterval(() => setTime(getTimeRemaining(endDate)), 1000);
-    return () => clearInterval(id);
-  }, [endDate]);
-  return time;
-}
 
 function CarouselSlide({
   competition,
@@ -29,7 +19,6 @@ function CarouselSlide({
   onNavigate: (e: MouseEvent) => void;
   priority?: boolean;
 }) {
-  const time = useCountdown(competition.drawDate);
   const percent = percentSold(competition.ticketsSold, competition.totalTickets);
   const isHot = percent >= 80;
 
@@ -62,7 +51,7 @@ function CarouselSlide({
         )}
 
         <div className="absolute top-3 right-3 bg-background/85 backdrop-blur-sm text-white text-[11px] sm:text-xs font-bold px-4 py-1.5 rounded-full whitespace-nowrap">
-          {time.total <= 0 ? 'Draw Complete' : time.days > 0 ? `Ends in ${time.days} day${time.days === 1 ? '' : 's'}` : 'Ends today'}
+          {(competition.totalTickets - competition.ticketsSold).toLocaleString()} tickets left
         </div>
 
         {isHot && (
@@ -89,7 +78,7 @@ function CarouselSlide({
 
         <div className="flex items-center justify-center gap-1.5 mt-2">
           <div className="w-1.5 h-1.5 rounded-full bg-success pulse-live" />
-          <CountdownTimer endDate={competition.drawDate} compact />
+          <span className="text-xs sm:text-sm font-bold text-success">Live Now</span>
         </div>
 
         <div className="mt-4 w-full py-3 rounded-xl bg-primary group-hover:bg-primary-light text-background font-bold text-sm sm:text-base transition-colors">

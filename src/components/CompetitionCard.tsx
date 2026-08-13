@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { formatPrice, formatPriceShort } from '@/lib/utils';
-import CountdownTimer from './CountdownTimer';
 import ProgressBar from './ProgressBar';
 import type { Competition } from '@/lib/mock-data';
 
@@ -57,7 +56,9 @@ export default function CompetitionCard({ competition, index = 0 }: CompetitionC
 
             <div className="flex items-center gap-1.5">
               <div className="w-1.5 h-1.5 rounded-full bg-success pulse-live" />
-              <CountdownTimer endDate={competition.drawDate} compact />
+              <span className="text-xs font-bold text-foreground">
+                {(competition.totalTickets - competition.ticketsSold).toLocaleString()} tickets left
+              </span>
             </div>
 
             <ProgressBar

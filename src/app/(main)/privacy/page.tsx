@@ -20,7 +20,7 @@ const sections: { title: string; body: React.ReactNode }[] = [
         <li>Order information: competitions entered, ticket numbers, order history.</li>
         <li>Payment information: bank transfer details you use to pay us &mdash; we never see or store your full card details.</li>
         <li>Free postal entries: the details you send us on a postcard, used only for that competition entry.</li>
-        <li>Technical information: IP address, browser type, and pages visited, used for security and analytics.</li>
+        <li>Technical information: IP address, browser type, and pages visited, used for security and analytics. Our analytics (Vercel Web Analytics) is cookieless and does not identify you personally &mdash; see our Cookie Policy.</li>
       </ul>
     ),
   },

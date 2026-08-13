@@ -227,11 +227,7 @@ export default function CompetitionDetailPage({
                 <div>
                   <h3 className="font-bold text-foreground text-sm mb-1">Prefer to enter for free?</h3>
                   <p className="text-xs text-muted font-medium leading-relaxed mb-2">
-                    {FREE_ENTRY_INSTRUCTIONS} Entries must arrive by{' '}
-                    <span className="text-foreground font-bold">
-                      {new Date(competition.drawDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
-                    </span>{' '}
-                    to be entered into this competition.
+                    {FREE_ENTRY_INSTRUCTIONS}
                   </p>
                   <p className="text-xs text-foreground font-bold">
                     {FREE_ENTRY_ADDRESS_LINES.join(', ')}

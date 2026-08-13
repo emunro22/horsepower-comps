@@ -6,4 +6,4 @@
 export const FREE_ENTRY_ADDRESS_LINES = ['Horse Power Competitions', '13 Wirran Place', 'Glasgow', 'G13 4NE'];
 export const FREE_ENTRY_ADDRESS = FREE_ENTRY_ADDRESS_LINES.join(', ');
 export const FREE_ENTRY_INSTRUCTIONS =
-  'Write your name, address, email, date of birth, and the name of the competition you wish to enter on a postcard, and post it to the address above. One entry per envelope. Free entries receive one ticket, entered into the same draw as paid tickets, with an equal chance of winning, and must be received by the competition’s closing date.';
+  'Write your name, address, email, date of birth, and the name of the competition you wish to enter on a postcard, and post it to the address above. One entry per envelope. Free entries receive one ticket, entered into the same draw as paid tickets, with an equal chance of winning, and are accepted at any time until the competition sells out.';

@@ -218,7 +218,7 @@ export const faqs = [
   },
   {
     question: 'How are winners chosen?',
-    answer: 'Winners are selected using a cryptographically secure random number generator. The draw is conducted live on our social media channels so you can watch in real-time. Each ticket has an equal chance of winning.',
+    answer: 'Winners are selected using a cryptographically secure random number generator, run by our team once a competition sells out. Draws are often streamed live on our social media channels. Each ticket has an equal chance of winning.',
   },
   {
     question: 'When will I receive my prize?',
