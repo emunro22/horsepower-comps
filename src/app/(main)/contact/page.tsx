@@ -43,7 +43,7 @@ export default function ContactPage() {
               ),
               title: 'Based In',
               value: 'United Kingdom',
-              sub: 'UK registered company',
+              sub: 'UK based business',
             },
             {
               icon: (

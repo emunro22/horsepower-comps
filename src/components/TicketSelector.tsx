@@ -107,7 +107,7 @@ export default function TicketSelector({ competitionId, competitionTitle, imageU
       </button>
 
       <p className="text-xs text-muted text-center font-medium">
-        Secure checkout powered by Stripe. You must be 18+ to enter.
+        We&apos;re currently only accepting payment by bank transfer. You must be 18+ to enter.
       </p>
     </div>
   );

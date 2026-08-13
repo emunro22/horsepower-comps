@@ -29,42 +29,8 @@ export default function Footer() {
       {/* Payment methods bar */}
       <div className="border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-sm font-semibold text-muted">Secure payments powered by Stripe</p>
-            <div className="flex items-center gap-3">
-              {/* Visa */}
-              <div className="h-8 w-12 bg-white rounded-md flex items-center justify-center">
-                <svg viewBox="0 0 48 32" className="h-5 w-auto">
-                  <rect width="48" height="32" rx="4" fill="#fff"/>
-                  <path d="M19.5 21h-3l1.9-11.5h3L19.5 21zm12.3-11.2c-.6-.2-1.5-.5-2.7-.5-3 0-5 1.5-5 3.7 0 1.6 1.5 2.5 2.6 3 1.1.6 1.5 1 1.5 1.5 0 .8-1 1.2-1.8 1.2-1.2 0-1.9-.2-2.9-.6l-.4-.2-.4 2.5c.7.3 2 .6 3.4.6 3.2 0 5.2-1.5 5.2-3.8 0-1.3-.8-2.2-2.5-3-.7-.5-1.6-1-1.6-1.5 0-.5.5-1 1.6-1 .9 0 1.6.2 2.1.4l.3.1.4-2.4zM36 21l.5-1.4h3.6l.3 1.4H43L40.6 9.5h-2.3c-.7 0-1.3.4-1.5 1L33 21h3.1zm3.5-3.7l1.5-4 .4-1.1.2 1 .9 4.1h-3zM16 9.5L13 17l-.3-1.6c-.6-1.8-2.3-3.8-4.2-4.8l2.7 10.3H14L19 9.5h-3z" fill="#1A1F71"/>
-                  <path d="M10.5 9.5H5.6l-.1.3c3.8 1 6.4 3.3 7.4 6.1l-1.1-5.3c-.2-.8-.7-1-1.3-1.1z" fill="#F9A533"/>
-                </svg>
-              </div>
-              {/* Mastercard */}
-              <div className="h-8 w-12 bg-white rounded-md flex items-center justify-center">
-                <svg viewBox="0 0 48 32" className="h-5 w-auto">
-                  <rect width="48" height="32" rx="4" fill="#fff"/>
-                  <circle cx="19" cy="16" r="8" fill="#EB001B"/>
-                  <circle cx="29" cy="16" r="8" fill="#F79E1B"/>
-                  <path d="M24 10a8 8 0 0 0-3 6 8 8 0 0 0 3 6 8 8 0 0 0 3-6 8 8 0 0 0-3-6z" fill="#FF5F00"/>
-                </svg>
-              </div>
-              {/* Amex */}
-              <div className="h-8 w-12 bg-[#006FCF] rounded-md flex items-center justify-center">
-                <span className="text-[9px] font-black text-white tracking-tight leading-none">AMEX</span>
-              </div>
-              {/* Apple Pay */}
-              <div className="h-8 w-12 bg-black rounded-md flex items-center justify-center">
-                <svg viewBox="0 0 48 24" className="h-4 w-auto">
-                  <path d="M11.2 4.5c-.7.8-1.8 1.4-2.9 1.3-.1-1.1.4-2.3 1.1-3 .7-.8 1.9-1.4 2.8-1.4.1 1.2-.4 2.3-1 3.1zm1 1.5c-1.6-.1-3 .9-3.8.9s-2-.9-3.2-.8C3.5 6.2 2 7.2 1.1 8.7c-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2-.1 1.7-.8 3.1-.8s1.9.8 3.2.7c1.3 0 2.1-1.2 2.9-2.4.9-1.3 1.3-2.6 1.3-2.7 0 0-2.5-1-2.5-3.8 0-2.4 2-3.5 2-3.5-1.1-1.6-2.8-1.8-3.4-1.9l.3.4z" fill="#fff"/>
-                  <text x="20" y="17" fill="#fff" fontSize="10" fontFamily="system-ui" fontWeight="600">Pay</text>
-                </svg>
-              </div>
-              {/* Google Pay */}
-              <div className="h-8 w-12 bg-white rounded-md flex items-center justify-center border border-gray-200">
-                <span className="text-[8px] font-bold text-gray-700 tracking-tight leading-none">GPay</span>
-              </div>
-            </div>
+          <div className="flex items-center justify-center">
+            <p className="text-sm font-semibold text-muted">Currently accepting payment by bank transfer only</p>
           </div>
         </div>
       </div>
@@ -129,7 +95,7 @@ export default function Footer() {
               <span>Free postal entry available</span>
             </div>
             <p className="text-xs text-muted">
-              &copy; {new Date().getFullYear()} Horsepowercomps Ltd. All rights reserved. Registered in the UK.
+              &copy; {new Date().getFullYear()} Horsepowercomps. All rights reserved.
             </p>
           </div>
         </div>

@@ -20,10 +20,6 @@ const sections: { title: string; body: React.ReactNode }[] = [
           in, remember the contents of your cart, and are required for the Site to function.
           These cannot be switched off.
         </li>
-        <li>
-          <span className="font-bold text-foreground">Payment cookies:</span> set by Stripe during
-          checkout to securely process your payment.
-        </li>
       </ul>
     ),
   },

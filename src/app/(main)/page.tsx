@@ -84,7 +84,7 @@ export default function HomePage() {
               { icon: '🔒', title: 'Secure Payments', desc: 'SSL encrypted checkout' },
               { icon: '🎲', title: 'Provably Fair', desc: 'Verified random draws' },
               { icon: '🚚', title: 'Free Delivery', desc: 'All prizes delivered free' },
-              { icon: '🇬🇧', title: 'UK Company', desc: 'Registered & regulated' },
+              { icon: '🇬🇧', title: 'UK Based', desc: 'Operated from the UK' },
             ].map((item) => (
               <div key={item.title} className="flex items-center justify-center gap-3">
                 <div className="text-2xl">{item.icon}</div>

@@ -46,9 +46,8 @@ const sections: { title: string; body: React.ReactNode }[] = [
     title: '4. Payment',
     body: (
       <p>
-        All paid entries are processed securely through Stripe. Prices are shown in GBP and
-        include any applicable taxes. Your entry is only confirmed once payment has been
-        successfully taken and your tickets have been allocated.
+        Prices are shown in GBP and include any applicable taxes. Your entry is only confirmed
+        once payment has been successfully verified and your tickets have been allocated.
       </p>
     ),
   },

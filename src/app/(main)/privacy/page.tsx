@@ -18,7 +18,7 @@ const sections: { title: string; body: React.ReactNode }[] = [
       <ul className="list-disc list-inside space-y-1.5">
         <li>Account details: name, email address, phone number, date of birth, postal address.</li>
         <li>Order information: competitions entered, ticket numbers, order history.</li>
-        <li>Payment information: processed directly by Stripe &mdash; we never see or store your full card details.</li>
+        <li>Payment information: bank transfer details you use to pay us &mdash; we never see or store your full card details.</li>
         <li>Free postal entries: the details you send us on a postcard, used only for that competition entry.</li>
         <li>Technical information: IP address, browser type, and pages visited, used for security and analytics.</li>
       </ul>
@@ -41,7 +41,7 @@ const sections: { title: string; body: React.ReactNode }[] = [
     body: (
       <p>
         We share the minimum data necessary with trusted third parties who help us run the Site:
-        Stripe (payment processing), Resend (transactional email delivery), and Vercel Blob
+        Resend (transactional email delivery) and Vercel Blob
         (secure storage for competition images). We do not sell your personal data to anyone.
       </p>
     ),
