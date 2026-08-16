@@ -1,14 +1,18 @@
 import Link from 'next/link';
+import { COMPANY_LEGAL_NAME, COMPANY_NUMBER, COMPANY_REGISTERED_OFFICE } from '@/lib/company';
 
 const sections: { title: string; body: React.ReactNode }[] = [
   {
     title: '1. Who We Are',
     body: (
       <p>
-        Horse Power Competitions is the data controller for the personal information you provide when
-        you use horsepowercomps.co.uk (the &quot;Site&quot;). This policy explains what data we
-        collect, why, and how we look after it, in line with UK GDPR and the Data Protection Act
-        2018.
+        Horse Power Competitions is a trading name of{' '}
+        <span className="font-bold text-foreground">{COMPANY_LEGAL_NAME}</span> (company number{' '}
+        <span className="font-bold text-foreground">{COMPANY_NUMBER}</span>, registered office{' '}
+        <span className="font-bold text-foreground">{COMPANY_REGISTERED_OFFICE}</span>), the data
+        controller for the personal information you provide when you use
+        horsepowercomps.co.uk (the &quot;Site&quot;). This policy explains what data we collect,
+        why, and how we look after it, in line with UK GDPR and the Data Protection Act 2018.
       </p>
     ),
   },

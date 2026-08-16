@@ -1,16 +1,21 @@
 import Link from 'next/link';
 import { FREE_ENTRY_ADDRESS } from '@/lib/free-entry';
+import { COMPANY_LEGAL_NAME, COMPANY_NUMBER } from '@/lib/company';
 
 const sections: { title: string; body: React.ReactNode }[] = [
   {
     title: '1. About Us',
     body: (
       <p>
-        Horse Power Competitions (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;) is a
-        Glasgow-based business operating prize competitions at horsepowercomps.co.uk (the
-        &quot;Site&quot;). We trade as Horse Power Competitions from{' '}
-        <span className="font-bold text-foreground">{FREE_ENTRY_ADDRESS}</span>, and you can
-        contact us by email at hello@horsepowercomps.co.uk or via our{' '}
+        Horse Power Competitions (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;) is a trading
+        name of{' '}
+        <span className="font-bold text-foreground">{COMPANY_LEGAL_NAME}</span>, a company
+        registered in Scotland under company number{' '}
+        <span className="font-bold text-foreground">{COMPANY_NUMBER}</span>, whose registered
+        office and postal address for free entries is{' '}
+        <span className="font-bold text-foreground">{FREE_ENTRY_ADDRESS}</span>. We operate
+        prize competitions at horsepowercomps.co.uk (the &quot;Site&quot;), and you can contact
+        us by email at hello@horsepowercomps.co.uk or via our{' '}
         <Link href="/contact" className="text-primary hover:text-primary-light font-semibold">
           Contact
         </Link>{' '}
@@ -171,10 +176,10 @@ const sections: { title: string; body: React.ReactNode }[] = [
     title: '12. Governing Law',
     body: (
       <p>
-        We are based in Glasgow, and these terms are governed by the laws of Scotland. Any
-        dispute arising from them may be brought in the Scottish courts. As a consumer, you may
-        also bring proceedings in the courts of the part of the United Kingdom in which you live,
-        and nothing in this clause affects your statutory rights.
+        {COMPANY_LEGAL_NAME} is registered in Scotland, and these terms are governed by the laws
+        of Scotland. Any dispute arising from them may be brought in the Scottish courts. As a
+        consumer, you may also bring proceedings in the courts of the part of the United Kingdom
+        in which you live, and nothing in this clause affects your statutory rights.
       </p>
     ),
   },

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Logo from './Logo';
 import { socialLinks } from '@/lib/social';
 import { FREE_ENTRY_ADDRESS } from '@/lib/free-entry';
+import { COMPANY_LEGAL_NAME, COMPANY_NUMBER, COMPANY_REGISTERED_OFFICE } from '@/lib/company';
 
 const footerLinks = {
   Competitions: [
@@ -105,6 +106,11 @@ export default function Footer() {
               &copy; {new Date().getFullYear()} Horse Power Competitions. All rights reserved.
             </p>
           </div>
+          <p className="mt-4 text-[11px] text-muted/80 text-center sm:text-left">
+            Horse Power Competitions is a trading name of {COMPANY_LEGAL_NAME}, a company
+            registered in Scotland (company number {COMPANY_NUMBER}). Registered office:{' '}
+            {COMPANY_REGISTERED_OFFICE}.
+          </p>
         </div>
       </div>
     </footer>

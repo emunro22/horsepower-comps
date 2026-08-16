@@ -1,4 +1,5 @@
 import { FREE_ENTRY_ADDRESS } from './free-entry';
+import { COMPANY_LEGAL_NAME, COMPANY_NUMBER } from './company';
 
 export interface Competition {
   id: string;
@@ -214,7 +215,7 @@ export const faqs = [
   },
   {
     question: 'Is Horse Power Competitions legitimate?',
-    answer: 'Absolutely! Horse Power Competitions is a UK-based business operating fully within UK competition law. All draws are conducted transparently using provably fair random number generation, and winners are announced on our website and social media channels.',
+    answer: `Absolutely! Horse Power Competitions is a trading name of ${COMPANY_LEGAL_NAME}, a company registered in Scotland (company number ${COMPANY_NUMBER}), operating fully within UK competition law. All draws are conducted transparently using provably fair random number generation, and winners are announced on our website and social media channels.`,
   },
   {
     question: 'How are winners chosen?',
